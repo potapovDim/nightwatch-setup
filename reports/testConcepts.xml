@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="0"
-            tests="0">
+            failures="1"
+            tests="1">
 
   <testsuite name="testConcepts"
-    errors="0" failures="0" hostname="" id="" package="testConcepts" skipped="0"
-    tests="0" time="0.000" timestamp="Sun, 10 Jul 2016 11:10:29 GMT">
+    errors="0" failures="1" hostname="" id="" package="testConcepts" skipped="0"
+    tests="1" time="0.1150" timestamp="Fri, 27 Jan 2017 12:34:24 GMT">
+  
+    <testcase name="concepts tests with out login user fin group " time="0.1150" assertions="0">
+    </testcase>
   
   
   </testsuite>

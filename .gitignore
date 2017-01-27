@@ -1,4 +1,5 @@
 node_modules
 .idea
 reports
-.DS_store
+.DS_Store
+.vscode

@@ -1,25 +1,14 @@
- export default{
-     'concepts tests with out login user fin group ':(client)=>{
-         const conceptsPage=client.page.conceptsPage();
-         client.resizeWindow(600,600);
-         conceptsPage
-             .navigate()
-             .assertCategories()
-             .goToEditorWithOutChoosingCategory()
-             .goToEditorWithChoosingCategory("accomodation");
-         conceptsPage
-             .goToEditorWithChoosingCategory("events");
-         conceptsPage
-             .goToEditorWithChoosingCategory("portfolio");
-         conceptsPage
-             .goToEditorWithChoosingCategory("health_beauty");
-         conceptsPage
-             .goToEditorWithChoosingCategory("blog");
-         conceptsPage
-             .goToEditorWithChoosingCategory("business");
-         conceptsPage
-             .goToEditorWithChoosingCategory("eсommerce");
-          
-         client.end();
+ const disableTransition  = require('../commands/offcssanimation.js').disableTransition
+ function executedFunction () {
+     console.log(window ,document)
+ }
+ export default {
+     beforeEach: (browser) => {
+        browser.url('http://localhost:8080/')
+            .execute(disableTransition,[], () => console.log('remove styles'));
+     },
+     'concepts tests with out login user fin group ': (browser) =>{
+         browser.resizeWindow(600,600)
+         .resizeWindow(600,1200)
      }
  }

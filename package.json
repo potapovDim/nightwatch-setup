@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "e2e-setup": "node selenium-download.js",
-    "test":"npm run setup_driver;npm run go_nightwatch",
-    "setup_driver":"webdriver-manager start",
-    "go_nightwatch":"nightwatch"
+    "test": "nightwatch"
   },
   "author": "Potapov Dmytro",
   "license": "ISC",
@@ -20,6 +17,7 @@
     "operadriver": "^0.2.2",
     "selenium-download": "^2.0.0",
     "selenium-webdriver": "^2.53.2",
+    "webdriver-manager": "^11.1.1",
     "webpack": "^1.13.1"
   }
 }
