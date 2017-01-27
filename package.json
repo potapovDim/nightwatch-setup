@@ -13,6 +13,7 @@
     "babel-loader": "5.3.3",
     "chai": "^3.5.0",
     "chromedriver": "^2.21.2",
+    "mocha": "^3.2.0",
     "nightwatch": "^0.8.15",
     "operadriver": "^0.2.2",
     "selenium-download": "^2.0.0",
