@@ -1,9 +1,9 @@
 {
   "src_folders": ["tests"],
   "output_folder": "",
-  "custom_commands_path": "",
+  "custom_commands_path": "./commands",
   "custom_assertions_path": "",
-  "page_objects_path": "",
+  "page_objects_path": "./pages",
   "globals_path": "globals.js",
   "test_settings": {
     "default": {

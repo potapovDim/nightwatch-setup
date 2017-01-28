@@ -1,6 +1,4 @@
-"use strict"
-
-export const disableTransition = () => {
+const disableTransition = (selector) => {
   const style = document.createElement('style')
   style.type = 'text/css'
   style.innerHTML = ' div,span,p,ul,ol,li, nav, section {'+
@@ -15,6 +13,25 @@ export const disableTransition = () => {
     'background: none !important;'+
     '}' +
     '*:before { background: none !important; }'
-    console.log('!!!!!!!!!!!!!!!!!!!!')
-   document.getElementsByTagName('head')[0].appendChild(style)
+   document.getElementsByTagName(selector)[0].appendChild(style) //disable transition and css effects 
 }
+
+export function command () {
+  return this.execute(disableTransition,['head']) //execute script 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
