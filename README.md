@@ -1,5 +1,4 @@
 # nightwatch-setup
-set up for nightwatch
 
 simple example how to setup POM and run Nightwatch 
 
