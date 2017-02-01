@@ -1,9 +1,9 @@
 {
-  "src_folders": ["tests"],
+  "src_folders": ["./e2e/tests"],
   "output_folder": "",
-  "custom_commands_path": "./commands",
+  "custom_commands_path": "./e2e/commands",
   "custom_assertions_path": "",
-  "page_objects_path": "./pages",
+  "page_objects_path": "./e2e/pages",
   "globals_path": "globals.js",
   "test_settings": {
     "default": {
