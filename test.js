@@ -15,18 +15,9 @@ const asyncGetData = (data) => new Promise((resolve, reject) => {
         body += d.toString('utf8')
       });
       response.on('end', () => {
-        var parsed = JSON.parse(body)
+        let parsed = JSON.parse(body)
         resolve(parsed)
       })
     })
   })(data)
 })
-
-let initialValue 
-
-(data => {
-  asyncGetData(data).then(res => {
-    initialValue = res
-    console.log(initialValue)
-  })
-})(data)
