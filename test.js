@@ -6,9 +6,10 @@ const data = {
 
 const util = require('./utils')
 const http = require('http')
+const Rx = require('rxjs')
 
 const asyncGetData = (data) => new Promise((resolve, reject) => {
-  (function getData(data) {
+  ( getData = (data) => {
     return http.get(data, response => {
       let body = ''
       response.on('data', d => {
@@ -21,3 +22,10 @@ const asyncGetData = (data) => new Promise((resolve, reject) => {
     })
   })(data)
 })
+
+asyncGetData(data).then(data => console.log(data))
+
+Rx.Observable.from('hello world')
+  .map(letter => letter.toUpperCase())
+  .subscribe(
+    x => console.log(x));
