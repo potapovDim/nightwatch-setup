@@ -1,3 +1,4 @@
+const {expect} = require('chai')
 const dataGet = {
   host: 'localhost',
   port: '3000',
@@ -22,12 +23,14 @@ const asyncGetData = data => new Promise((resolve, reject) => {
   (getData = data => {
     return http.get(data, response => {
       let body = ''
-      response.on('data', d => {
-        body += d.toString('utf8')
+      response.on('data', response => {
+        body += response.toString('utf8')
+        if(body.statusCode ===404){
+          reject(body)
+        }
       });
       response.on('end', () => {
-        let parsed = JSON.parse(body)
-        resolve(parsed)
+        resolve(body)
       })
     })
   })(data)
@@ -51,7 +54,15 @@ const asyncPostData = data => new Promise((resolve, reject) => {
 asyncGetData(dataGet).then(data => console.log(data)).catch(e => console.log(e))
 asyncPostData(dataPost).then(data => console.log(data)).catch(e => console.log(e))
 
-Rx.Observable.of('hello world')
-  .map(letter => letter.toUpperCase())
-  .subscribe(
-    x => console.log(x));
+// Rx.Observable.of('hello world')
+//   .map(letter => letter.toUpperCase())
+//   .subscribe(
+//     x => console.log(x));
+
+describe('set up test', () => {
+  it('assert response', () => {
+    return asyncGetData(dataGet).then(data => {
+      expect(data).to.eql('somedata')
+    })
+  })
+})

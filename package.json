@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./test.sh"
+    "test": "./test.sh",
+    "test:api": "NODE_ENV=test mocha --harmony --trace-deprecation --timeout 50000 $(find ./ -path '*.spec.*')"
   },
   "author": "Potapov Dmytro",
   "license": "ISC",
@@ -17,5 +18,9 @@
     "operadriver": "^0.2.2",
     "rxjs": "^5.1.0",
     "webdriver-manager": "^11.1.1"
+  },
+  "dependencies": {
+    "koa": "^2.0.0-alpha.7",
+    "koa2": "^2.0.0-alpha.7"
   }
 }
