@@ -1,24 +1,32 @@
-const http = require('http')
-const parseOptionData = require('./utils')
-
 const data = {
   host: 'localhost',
   port: '3000',
-  path: '/',
+  path: '/'
 }
 
-function getData(data, callback) {
-  return http.get(data, function (response) {
-    var body = '';
-    response.on('data', function (d) {
-      console.log(d.toString('utf8'))
-      body += d;
-    });
-    response.on('end', function () {
-      var parsed = JSON.parse(body);
-      callback({email: parsed.email, password: parsed.pass});
-    });
-  });
-}
+const util = require('./utils')
+const http = require('http')
 
-getData(data, (res) => console.log(res))
+const asyncGetData = (data) => new Promise((resolve, reject) => {
+  (function getData(data) {
+    return http.get(data, response => {
+      let body = ''
+      response.on('data', d => {
+        body += d.toString('utf8')
+      });
+      response.on('end', () => {
+        var parsed = JSON.parse(body)
+        resolve(parsed)
+      })
+    })
+  })(data)
+})
+
+let initialValue 
+
+(data => {
+  asyncGetData(data).then(res => {
+    initialValue = res
+    console.log(initialValue)
+  })
+})(data)
