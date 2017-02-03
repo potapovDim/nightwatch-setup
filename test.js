@@ -4,38 +4,12 @@ const dataGet = {
   port: '4422',
   path: '/'
 }
-// const dataPost = {
-//   host: 'localhost',
-//   port: '4422',
-//   method: 'POST',
-//   json: true,
-//   body: 
-// }
-
-
-var options = {
-  hostname: 'localhost',
-  port: 4422,
-  path: '/',
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Content-Length': Buffer.byteLength(JSON.stringify({
-    username: 'test@test.com',
-    password: 'testpasss'
-  }))
-  }
-}
-
-
 
 const util = require('./utils')
 const Rx = require('rxjs')
 const http = require('http')
-const request = require('request')
-
+const querystring = require('querystring')
 const asyncGetData = data => new Promise((resolve, reject) => {
-  console.log("!!!!!!!!!!!");
   (getData = data => {
     return http.get(data, response => {
       let body = ''
@@ -52,20 +26,41 @@ const asyncGetData = data => new Promise((resolve, reject) => {
   })(data)
 })
 
-const asyncPostData = option => new Promise((resolve, reject) => {
-  console.log('-------------------', option);
-  (postData = option => {
-    return http.request(option, (response) => {
-      console.log("insidedsalkdlasjdlkasjlkfasjfjsafhajshfasfjsafjsajhfhajshlfjsahlfjs")
-      res.on('data', (chunk) => {
-        console.log(`BODY: ${chunk}`);
-      });
-      res.on('end', () => {
-        console.log('No more data in response.');
-      });
-    })
-  })(option).write(option).end()
-})
+var postData = querystring.stringify({
+  'msg' : 'Hello World!'
+});
+
+var options = {
+  hostname: 'localhost',
+  port: 4422,
+  path: '',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': Buffer.byteLength(postData)
+  }
+};
+
+var req = http.request(options, (res) => {
+  console.log(`STATUS: ${res.statusCode}`);
+  console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+  res.setEncoding('utf8');
+  res.on('data', (chunk) => {
+    console.log(`BODY: ${chunk}`);
+  });
+  res.on('end', () => {
+    console.log('No more data in response.');
+  });
+});
+
+req.on('error', (e) => {
+  console.log(`problem with request: ${e.message}`);
+});
+
+// write data to request body
+req.write(postData);
+req.end();
+
 
 // asyncGetData(dataGet).then(data => console.log(data)).catch(e =>
 // console.log(e)) asyncPostData(dataPost).then(data =>
@@ -73,15 +68,10 @@ const asyncPostData = option => new Promise((resolve, reject) => {
 //   .map(letter => letter.toUpperCase())   .subscribe(     x =>
 // console.log(x));
 
-describe('set up test', () => {
-  it('assert response', () => {
-    return asyncGetData(dataGet).then(data => {
-      expect(data).to.eql('somedata')
-    })
-  })
-  it('assert post', () => {
-    return asyncPostData(options).then(data => {
-      expect(data).to.eql('somedata')
-    })
-  })
-})
+// describe('set up test', () => {
+//   it('assert response', () => {
+//     return asyncGetData(dataGet).then(data => {
+//       expect(data).to.eql('somedata')
+//     })
+//   })
+// })

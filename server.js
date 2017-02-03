@@ -3,6 +3,7 @@ const app = new Koa()
 const router = require('koa-router')()
 const logger = require('koa-logger')
 const mongoose = require('mongoose')
+const bodyParser = require('koa-bodyparser')
 
 mongoose.connect('mongodb://127.0.0.1:27050')
 
@@ -24,20 +25,18 @@ const getData = ctx => new Promise((resolve, reject) => {
   }).then(users => ctx.body = users)
 })
 
-const postData = ctx => new Promise((resolve, reject) => {
-  console.log(ctx.body, '!!!!!!!!!!!')
+router.post('/', (ctx) => {
+ console.log(ctx.request.body, '!!!!!!!!!!!')
   tt.save((err) => {
     if(err) reject(err);
     else {
-      resolve('test data sucess save')
+      console.log("!!!!!!!!!!!!!!!")
       return ctx.body = 'test data sucess save'
     }
-  })
+  }).then(data => console.log(data))
 })
-
-router.get('', getData)
-router.post('', postData)
-
+router.get('/', getData)
+app.use(bodyParser())
 app.use(logger())
 app.use(router.routes())
 
