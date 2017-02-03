@@ -25,17 +25,22 @@ const getData = ctx => new Promise((resolve, reject) => {
   }).then(users => ctx.body = users)
 })
 
+
+const assertPresentUSer = where => {
+  return Testmodels.find(where).lean()
+}
 router.post('/', (ctx) => {
- console.log(ctx.request.body, '!!!!!!!!!!!')
-  tt.save((err) => {
-    if(err) reject(err);
-    else {
-      console.log("!!!!!!!!!!!!!!!")
-      return ctx.body = 'test data sucess save'
-    }
-  }).then(data => console.log(data))
+ console.log(ctx.request.body, 'post Data')
+ const user = Testmodels.find({name: /^Hello/}, (err, user) => {
+    console.log('callback', user)
+    return ctx.body = 'user success save !+!+!+!+!+!+!+!'
+ }).then(user => console.log(user))
+ //const websites = user.populate('websites') 
+ //newUSer.save()
 })
 router.get('/', getData)
+
+
 app.use(bodyParser())
 app.use(logger())
 app.use(router.routes())

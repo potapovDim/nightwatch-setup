@@ -26,11 +26,11 @@ const asyncGetData = data => new Promise((resolve, reject) => {
   })(data)
 })
 
-var postData = querystring.stringify({
-  'msg' : 'Hello World!'
+const postData = querystring.stringify({
+  'name' : 'Hello World!'
 });
 
-var options = {
+const options = {
   hostname: 'localhost',
   port: 4422,
   path: '',
@@ -41,7 +41,7 @@ var options = {
   }
 };
 
-var req = http.request(options, (res) => {
+const req = http.request(options, (res) => {
   console.log(`STATUS: ${res.statusCode}`);
   console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
   res.setEncoding('utf8');
@@ -68,10 +68,10 @@ req.end();
 //   .map(letter => letter.toUpperCase())   .subscribe(     x =>
 // console.log(x));
 
-// describe('set up test', () => {
-//   it('assert response', () => {
-//     return asyncGetData(dataGet).then(data => {
-//       expect(data).to.eql('somedata')
-//     })
-//   })
-// })
+describe('set up test', () => {
+  it('assert response', () => {
+    return asyncGetData(dataGet).then(data => {
+      expect(data).to.eql('somedata')
+    })
+  })
+})
