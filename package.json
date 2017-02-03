@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./test.sh",
+    "api":"nodemon --harmony ./server.js",
     "test:api": "NODE_ENV=test mocha --harmony --trace-deprecation --timeout 50000 $(find ./ -path '*.spec.*')"
   },
   "author": "Potapov Dmytro",

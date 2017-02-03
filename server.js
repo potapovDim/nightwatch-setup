@@ -29,14 +29,11 @@ const getData = ctx => new Promise((resolve, reject) => {
 const assertPresentUSer = where => {
   return Testmodels.find(where).lean()
 }
-router.post('/', (ctx) => {
+router.post('/', async (ctx) => {
  console.log(ctx.request.body, 'post Data')
- const user = Testmodels.find({name: /^Hello/}, (err, user) => {
-    console.log('callback', user)
-    return ctx.body = 'user success save !+!+!+!+!+!+!+!'
- }).then(user => console.log(user))
- //const websites = user.populate('websites') 
- //newUSer.save()
+ const user =  await Testmodels.find({name: /^Hello/})
+ console.log(user)
+ return ctx.body = user
 })
 router.get('/', getData)
 
