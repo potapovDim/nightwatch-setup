@@ -51,8 +51,8 @@ const asyncPostData = data => new Promise((resolve, reject) => {
 })
 
 
-asyncGetData(dataGet).then(data => console.log(data)).catch(e => console.log(e))
-asyncPostData(dataPost).then(data => console.log(data)).catch(e => console.log(e))
+//asyncGetData(dataGet).then(data => console.log(data)).catch(e => console.log(e))
+//asyncPostData(dataPost).then(data => console.log(data)).catch(e => console.log(e))
 
 // Rx.Observable.of('hello world')
 //   .map(letter => letter.toUpperCase())

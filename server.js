@@ -1,8 +1,19 @@
-const Koa = require('koa');
-const app = new Koa();
+const Koa = require('koa')
+const app = new Koa()
+const router = require('koa-router')()
+const logger = require('koa-logger')
 
-app.use(ctx => {
-  ctx.body = 'test server response';
-});
+const PORT = 4422
 
-app.listen(3000);
+const midd = (ctx) => new Promise((resolve,reject) => {
+  ctx.body = '!_@_!_@!_@!_'
+  resolve()
+})
+router.get('', midd)
+
+app.use(logger())
+app.use(router.routes())
+
+
+app.listen(PORT)
+console.log('server start on port ' + PORT)
