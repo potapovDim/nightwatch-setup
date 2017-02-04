@@ -4,17 +4,29 @@ const router = require('koa-router')()
 const logger = require('koa-logger')
 const mongoose = require('mongoose')
 const bodyParser = require('koa-bodyparser')
+const cors = require('koa-cors')
+const {equalUser} = require('./utils')
+
+
 
 mongoose.connect('mongodb://127.0.0.1:27050')
 
-const testShema = mongoose.Schema({name: String})
+const testShema = mongoose.Schema({name: String, password: String})
 
-const Testmodels = mongoose.model('testModel', testShema)
+const TestUSerMode = mongoose.model('testModel', testShema)
 
-const tt = new Testmodels({name: 'test'})
+const passgenerator = () => {
+  const string = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
+  let pass = '';
+  const rand = () => parseInt((Math.random() * 55).toFixed(0))
+  for(let i =0; i <12; i++){
+    pass += string[rand()]
+  }
+  return pass
+}
 
 const getData = ctx => new Promise((resolve, reject) => {
-  Testmodels.findOne({}, (err, users) => {
+  TestUSerMode.findOne({}, (err, users) => {
     if (err) 
       console.error(err.message, err.code);
     resolve(users)
@@ -22,41 +34,30 @@ const getData = ctx => new Promise((resolve, reject) => {
   }).then(users => ctx.body = users)
 })
 
-const assertPresentUSer = where => {
-  return Testmodels
-    .find(where)
-    .lean()
-}
 router.post('/', async(ctx) => {
-  console.log(ctx.request.body, 'post Data')
-  const users = await Testmodels.find()
-  console.log(users)
-  if (users.length !== 0) {
-    for (let user of users) {
-      console.log(user.name, '!!!!!!!!!!!!!!')
-      if (user.name !== ctx.request.body.name) {
-        console.log('inside if')
-        const newUser = new Testmodels({name: `${ctx.request.body.name}`})
-        newUser.save()
-        ctx.status = 201
-        ctx.body = 'user success created'
-      } else {
+  const users = await TestUSerMode.find()
+  if(equalUser(users, ctx.request.body)) {
         ctx.status = 404
-        ctx.body = 'user already exist'
-      }
-    }
+        ctx.body = {message: 'user already exist'}
   }
-  else{
-        const newUser = new Testmodels({name: `${ctx.request.body.name}`})
-        await newUser.save()
+  else {
+        const pass = passgenerator()
+        const newUser = new TestUSerMode({
+            name: `${ctx.request.body.name}`, password: pass
+          })
+        const a = await newUser.save()
         ctx.status = 201
-        ctx.body = 'user success created'
+        ctx.body = {
+          message:'user success created',
+          yourPassword : pass
+        }
   }
   return ctx
 })
 router.get('/', getData)
 
 app.use(bodyParser())
+app.use(cors())
 app.use(logger())
 app.use(router.routes())
 

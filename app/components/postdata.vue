@@ -1,7 +1,7 @@
 <template>
     <div class="clock">
         <h1 class="clock-time-show">{{ time }}</h1>
-        <button v-on:click="renderSomeNewData"></button>
+        <button v-on:click="renderSomeNewData" class="create-form">Create new post form</button>
     </div>
 </template>
 
@@ -14,14 +14,42 @@
             this.startTime()
         },
         methods: {
-            renderSomeNewData() {
-              const div = document.createElement('div')
-              div.style = `color: #000000;
-                           height: 100px;
-                           width: 1000px;`
-              div.innerHTML = 'Created Element'
-              const insideRender = document.getElementsByClassName('clock')
-              insideRender[0].appendChild(div)
+            resultRequest (status, data) {
+                const div = document.createElement('div')
+                const classNameDiv = status === 201 ? 'success' : 'warning'
+                div.className = classNameDiv
+                div.innerHTML = data
+                document.getElementsByClassName('clock')[0].appendChild(div)
+            },
+            postData () {
+                const xhr = new XMLHttpRequest()
+                const url = 'http://localhost:4422/'
+                const data = JSON.stringify({
+                    name: document.getElementsByClassName('name')[0].value
+                })
+                xhr.open("POST", url, true)
+                xhr.setRequestHeader('Content-type', 'application/json')
+                xhr.onreadystatechange = () => {
+                    this.resultRequest(200, xhr.response)
+                }
+                xhr.send(data)
+            },
+            renderSomeNewData () {
+              const inputPresent = document.getElementsByClassName('name')
+              if(inputPresent.length === 0){
+                console.log(inputPresent)
+                const input1 = document.createElement('input')
+                const button = document.createElement('button')
+                button.innerHTML = 'Create user'
+                button.onclick = () => this.postData()
+                input1.placeholder = 'name'
+                input1.className = 'name'
+                input1.style = `color: #000000;
+                            width: 100px;`
+                const insideRender = document.getElementsByClassName('clock')
+                insideRender[0].appendChild(input1)
+                insideRender[0].appendChild(button)
+              }
             },
             startTime () {
                 var today = new Date();
@@ -48,5 +76,20 @@
         font-size: 100px;
         line-height: 1.1em;
         margin: 10px 100 100px;
+    }
+    .success {
+        color: green;
+        width: 30px;
+        height: 30px;
+    }
+    .warning {
+        color: red;
+        width: 30px;
+        height: 30px;
+    }
+    .create-form {
+        background: rgba(100, 150, 15, 0.8);
+        border-radius: 4px;
+        height: 20px;
     }
 </style>
