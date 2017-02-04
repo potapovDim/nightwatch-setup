@@ -1,4 +1,4 @@
-# nightwatch-setup
+# simple example with docker, vuejs, webpack, koa2, mongodb
 
 simple example how to setup POM and run Nightwatch 
 
@@ -17,7 +17,10 @@ npm i
 ## Run
  
 ```
+npm run api
+npm run dev
 npm test
+npm run test:api
 ```
 
 if you get 'sh: ./test.sh: Permission denied'

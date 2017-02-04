@@ -6,5 +6,8 @@ const assertNumber = arg => toString.call(arg) ==='[object Number]'
 const assertObject = arg => arg !== null && typeof arg ==='object'
 
 module.exports = {
-  assertArray
+  assertNumber,
+  assertArray,
+  assertObject,
+  assertString
 }

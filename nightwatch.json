@@ -1,6 +1,6 @@
 {
   "src_folders": ["./e2e/tests"],
-  "output_folder": "",
+  "output_folder": "./e2e/tests_output",
   "custom_commands_path": "./e2e/commands",
   "custom_assertions_path": "",
   "page_objects_path": "./e2e/pages",

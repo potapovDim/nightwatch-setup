@@ -52,7 +52,7 @@ const asyncPostData = data => new Promise((resolve, reject) => {
 
 
 var postData = JSON.stringify({
-  'msg' : 'Hello World!'
+  'name' : 'Hello World!'
 });
 
 var options = {
