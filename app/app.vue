@@ -5,7 +5,7 @@
             <postdata v-bind:initializeLogin="initializeLogin"></postdata>
         </div>
         <div v-if="login && password">
-            <cabinet username="login" password="password"></cabinet>
+            <cabinet v-bind:username="login" v-bind:password="password"></cabinet>
         </div>
     </div>
 </template>

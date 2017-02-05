@@ -2,7 +2,7 @@
     <div class="cabinet">
       <input  placeholder="login name"/>
       <input  placeholder="password"/>
-      <button>Login</button>
+      <button v-on:click="login(username, password)">Login</button>
     </div>
 </template>
 
@@ -26,9 +26,12 @@
           }
         },
         mounted () {
+          
         },
         methods: {
-            
+            login (username, password) {
+              console.log(username , password)
+            }
         }
     }
 </script>
