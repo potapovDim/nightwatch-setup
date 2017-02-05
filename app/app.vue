@@ -5,7 +5,7 @@
             <postdata v-bind:initializeLogin="initializeLogin"></postdata>
         </div>
         <div v-if="login && password">
-            <cabinet></cabinet>
+            <cabinet username="login" password="password"></cabinet>
         </div>
     </div>
 </template>
@@ -26,8 +26,8 @@
             Postdata
         },
         methods: {
-          initializeLogin({login, password}) {
-              console.log('!!!!!!!!!!clicked')
+          initializeLogin(login, password) {
+              console.log('clicker')
             this.login = login
             this.password = password 
           }

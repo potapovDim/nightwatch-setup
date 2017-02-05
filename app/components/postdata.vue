@@ -2,24 +2,20 @@
     <div class="clock">
         <h1 class="clock-time-show">{{ time }}</h1>
         <button v-on:click="renderSomeNewData" class="create-form">Create new post form</button>
-
-
-
-
-
-
-
-        <button v-on:click="initializeLogin">Clicker</button>
+        <button v-if="password && loginName"  v-on:click="initializeLogin(loginName, password)">Clicker</button>
     </div>
 </template>
 
 <script>
     export default {
         data () {
-            return { time: "00:00:00" }
+            return { 
+                password : null,
+                loginName: null,
+                time: "00:00:00" 
+            }
         },
         mounted () {
-            console.log(this.props)
             this.startTime()
         },
         props: {
@@ -29,31 +25,43 @@
             }
         },
         methods: {
-            resultRequest (status, data) {
-                console.log(status)
+            initializeSuccessData (data) {
+                this.password = data.yourPassword
                 const div = document.createElement('div')
-                const classNameDiv = status === 201 ? 'success' : 'warning'
-                div.className = classNameDiv
-                div.innerHTML = data.message
+                div.className = 'success'
+                div.innerHTML = `password for login: ${data.yourPassword} \n
+                                 name for login ${this.loginName}`
                 document.getElementsByClassName('clock')[0].appendChild(div)
             },
+            initializeErrorData (data) {
+                const div = document.createElement('div')
+                div.className = 'warning'
+                div.innerHTML = `error message: ${data.message}`
+                document.getElementsByClassName('clock')[0].appendChild(div)
+            },
+            resultRequest (status, data) {
+                const classNameDiv = status === 201 
+                                                ? this.initializeSuccessData(data) 
+                                                : this.initializeErrorData(data)
+            },
             postData () {
+                this.loginName = document.getElementsByClassName('name')[0].value
                 const xhr = new XMLHttpRequest()
                 const url = 'http://localhost:4422/'
                 const data = JSON.stringify({
-                    name: document.getElementsByClassName('name')[0].value
+                    name: this.loginName
                 })
                 xhr.open("POST", url, true)
                 xhr.setRequestHeader('Content-type', 'application/json')
+                
                 xhr.onreadystatechange = () => {
-                    this.resultRequest(xhr.status, JSON.parse(xhr.response))
+                    xhr.readyState === 4 && this.resultRequest(xhr.status, JSON.parse(xhr.response))
                 }
                 xhr.send(data)
             },
             renderSomeNewData () {
               const inputPresent = document.getElementsByClassName('name')
               if(inputPresent.length === 0){
-                console.log(inputPresent)
                 const input1 = document.createElement('input')
                 const button = document.createElement('button')
                 button.innerHTML = 'Create user'
