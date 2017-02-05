@@ -13,6 +13,12 @@
         mounted () {
             this.startTime()
         },
+        props: {
+            initializeLogin: {
+                type: Function,
+                required: true
+            }
+        },
         methods: {
             resultRequest (status, data) {
                 const div = document.createElement('div')
@@ -60,7 +66,7 @@
                 s = this.checkTime(s);
 
                 this.time = h + ":" + m + ":" + s;
-                var t = setTimeout(this.startTime, 500);
+                const t = setTimeout(this.startTime, 500);
             },
             checkTime (i) {
                 if (i < 10) {i = "0" + i};

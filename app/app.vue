@@ -7,15 +7,23 @@
 
 <script>
     import Postdata from './components/postdata.vue'
-
+    import Cabinet from './components/cabinet.vue'
     export default {
         data () {
             return {
-                msg: 'First app training'
+                msg: 'First app training',
+                login: '',
+                password: ''
             }
         },
         components: {
+            Cabinet,
             Postdata
+        },
+        methods:{
+          initializeLogin({login, password}) {
+            
+          }  
         }
     }
 </script>
