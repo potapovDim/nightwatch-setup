@@ -1,7 +1,12 @@
 <template>
     <div>
         <h1>{{ msg }}</h1>
-        <postdata></postdata>
+        <div v-if="!login && !password">
+            <postdata v-bind:initializeLogin="initializeLogin"></postdata>
+        </div>
+        <div v-if="login && password">
+            <cabinet></cabinet>
+        </div>
     </div>
 </template>
 
@@ -12,18 +17,20 @@
         data () {
             return {
                 msg: 'First app training',
-                login: '',
-                password: ''
+                login: null,
+                password: null
             }
         },
         components: {
             Cabinet,
             Postdata
         },
-        methods:{
+        methods: {
           initializeLogin({login, password}) {
-            
-          }  
+              console.log('!!!!!!!!!!clicked')
+            this.login = login
+            this.password = password 
+          }
         }
     }
 </script>

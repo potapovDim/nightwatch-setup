@@ -1,7 +1,15 @@
-<template>
+<template >
     <div class="clock">
         <h1 class="clock-time-show">{{ time }}</h1>
         <button v-on:click="renderSomeNewData" class="create-form">Create new post form</button>
+
+
+
+
+
+
+
+        <button v-on:click="initializeLogin">Clicker</button>
     </div>
 </template>
 
@@ -11,6 +19,7 @@
             return { time: "00:00:00" }
         },
         mounted () {
+            console.log(this.props)
             this.startTime()
         },
         props: {
@@ -21,10 +30,11 @@
         },
         methods: {
             resultRequest (status, data) {
+                console.log(status)
                 const div = document.createElement('div')
                 const classNameDiv = status === 201 ? 'success' : 'warning'
                 div.className = classNameDiv
-                div.innerHTML = data
+                div.innerHTML = data.message
                 document.getElementsByClassName('clock')[0].appendChild(div)
             },
             postData () {
@@ -36,7 +46,7 @@
                 xhr.open("POST", url, true)
                 xhr.setRequestHeader('Content-type', 'application/json')
                 xhr.onreadystatechange = () => {
-                    this.resultRequest(200, xhr.response)
+                    this.resultRequest(xhr.status, JSON.parse(xhr.response))
                 }
                 xhr.send(data)
             },
@@ -85,12 +95,10 @@
     }
     .success {
         color: green;
-        width: 30px;
         height: 30px;
     }
     .warning {
         color: red;
-        width: 30px;
         height: 30px;
     }
     .create-form {
