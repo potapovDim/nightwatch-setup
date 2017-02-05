@@ -7,6 +7,8 @@
 </template>
 
 <script>
+    import {postData} from '../utils/'
+
     export default {
         data () {
             return { 
@@ -44,20 +46,12 @@
                                                 ? this.initializeSuccessData(data) 
                                                 : this.initializeErrorData(data)
             },
-            postData () {
-                this.loginName = document.getElementsByClassName('name')[0].value
-                const xhr = new XMLHttpRequest()
+            registerUser () {
                 const url = 'http://localhost:4422/'
-                const data = JSON.stringify({
-                    name: this.loginName
-                })
-                xhr.open("POST", url, true)
-                xhr.setRequestHeader('Content-type', 'application/json')
-                
-                xhr.onreadystatechange = () => {
-                    xhr.readyState === 4 && this.resultRequest(xhr.status, JSON.parse(xhr.response))
-                }
-                xhr.send(data)
+                this.loginName = document.getElementsByClassName('name')[0].value
+                const data = { name: this.loginName}
+                const callback = this.resultRequest
+                postData({url, data, callback})
             },
             renderSomeNewData () {
               const inputPresent = document.getElementsByClassName('name')
@@ -65,7 +59,7 @@
                 const input1 = document.createElement('input')
                 const button = document.createElement('button')
                 button.innerHTML = 'Create user'
-                button.onclick = () => this.postData()
+                button.onclick = () => this.registerUser()
                 input1.placeholder = 'name'
                 input1.className = 'name'
                 input1.style = `color: #000000;
