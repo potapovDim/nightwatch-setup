@@ -23,7 +23,6 @@ var options = {
 };
 
 
-
 describe('set up test', () => {
   it('assert response', () => {
     return asyncGetData(dataGet).then(data => {

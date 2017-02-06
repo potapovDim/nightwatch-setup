@@ -16,7 +16,7 @@
     export default {
         data () {
             return {
-                msg: 'First app training',
+                msg: 'Simple app vue.js',
                 login: null,
                 password: null
             }
@@ -27,7 +27,6 @@
         },
         methods: {
           initializeLogin(login, password) {
-              console.log('clicker')
             this.login = login
             this.password = password 
           }
