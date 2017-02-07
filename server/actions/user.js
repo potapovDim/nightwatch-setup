@@ -2,6 +2,7 @@ const {equalUser, passgenerator} = require('../utils')
 
 const registerUser = (User) => async(ctx) => {
   const users = await User.find()
+  console.log(ctx.request.body)
   if (equalUser(users, ctx.request.body)) {
     ctx.status = 404
     ctx.body = {
