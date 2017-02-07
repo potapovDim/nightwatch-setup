@@ -3,6 +3,7 @@
     <input class="user-name" placeholder="username">
     <input class="user-password" placeholder="password">
     <button v-on:click="login" class="login-button">Login</button>
+    <li><router-link to="/a">/</router-link></li>
   </div>
 </template>
 

@@ -9,17 +9,27 @@ const equalUser = (users, enterUser ) => {
 }
 
 const passgenerator = () => {
-  const string = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
+  const stringPass = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
   let pass = '';
   const rand = () => parseInt((Math.random() * 55).toFixed(0))
   for(let i =0; i <12; i++){
-    pass += string[rand()]
+    pass += stringPass[rand()]
   }
   return pass
 }
 
+const testTokenGenerator = () => {
+  const stringToken = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890.'
+  let token = '';
+  const rand = () => parseInt((Math.random() * 55).toFixed(0))
+  for(let i =0; i <33; i++){
+    token += string[rand()]
+  }
+  return token
+}
 
 module.exports = {
   equalUser,
-  passgenerator
+  passgenerator,
+  testTokenGenerator
 }

@@ -1,4 +1,4 @@
-const {equalUser, passgenerator} = require('../utils')
+const {equalUser, passgenerator, testTokenGenerator} = require('../utils')
 
 const registerUser = (User) => async(ctx) => {
   const users = await User.find()
@@ -25,10 +25,10 @@ const loginUser = (User) => async(ctx) => {
   const {name, password} = ctx.request.body
   console.log(name, password)
   const user = await User.findOne({name, password})
-
   if (!user) {
     ctx.status = 403
     ctx.body = {
+      token: testTokenGenerator(),
       message: 'cant login, user does not exist'
     }
   } else {
