@@ -1,13 +1,12 @@
 <template>
     <div>
-        <h1>{{ msg }}</h1>
+        <h2>{{ msg }}</h2>
         <initial-page></initial-page>        
     </div>
 </template>
 
 <script>
     import InitialPage from './components/initial-page.vue'
-    //import CreatePage from './components/create-user/create-user.vue'
     export default {
         data () {
             return {
@@ -15,7 +14,6 @@
             }
         },
         components: {
-            //CreatePage,
             InitialPage
         },
         methods: {}

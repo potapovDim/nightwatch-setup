@@ -1,23 +1,33 @@
 <template>
     <div class="clock">
-        <h1 class="clock-time-show">{{ time }}</h1>
+        <div class="clock-time-show">{{ time }}</div>
         <button v-on:click="regiterNewUser" class="create-user-button">Register new user</button>
-        <dsadasdas v-if="registerUser"></dsadasdas>
+        <button v-on:click="loginExistUser" class="create-user-button">Login </button>
+        <div class="registration-user">
+            <createuser v-if="registerUser"></createuser>
+        </div>
+        <div class="login-user">
+            <loginuser v-if="loginUser"></loginuser>
+        </div>
     </div>
 </template>
 
 <script>
     import { postData } from '../utils/'
-    import dsadasdas from './create-user/index.vue'
+    import createuser from './create-user/index.vue'
+    import loginuser from './login-user/index.vue'
+
     export default {
         data() {
             return {
                 time: "00:00:00",
-                registerUser: false
+                registerUser: false,
+                loginUser: false
             }
         },
         components: {
-            dsadasdas
+            loginuser,
+            createuser
         },
         mounted() {
             this.startTime()
@@ -40,6 +50,11 @@
             },
             regiterNewUser() {
                 this.registerUser = !this.registerUser
+                this.loginUser = false
+            },
+            loginExistUser() {
+                this.loginUser = !this.loginUser
+                this.registerUser = false
             }
         }
     }
@@ -49,9 +64,9 @@
 <style>
     .clock-time-show {
         color: darkturquoise;
-        font-size: 100px;
-        line-height: 1.1em;
-        margin: 10px 100 100px;
+        font-size: 80px;
+        line-height: 1.2em;
+        margin: 10px 0 100px;
     }
     
     .success {

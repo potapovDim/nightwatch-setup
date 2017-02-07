@@ -21,8 +21,10 @@ const registerUser = (User) => async(ctx) => {
   return ctx
 }
 
-const loginUser = (User, where) => async(ctx) => {
-  const user = await User.findOne(where)
+const loginUser = (User) => async(ctx) => {
+  const {name, password} = ctx.request.body
+  console.log(name, password)
+  const user = await User.findOne({name, password})
 
   if (!user) {
     ctx.status = 403
