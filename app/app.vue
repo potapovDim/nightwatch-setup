@@ -2,7 +2,7 @@
     <div>
         <h1>{{ msg }}</h1>
         <div v-if="!login && !password">
-            <postdata v-bind:initializeLogin="initializeLogin"></postdata>
+            <usercreate v-bind:initializeLogin="initializeLogin"></usercreate>
         </div>
         <div v-if="login && password">
             <cabinet v-bind:username="login" v-bind:password="password"></cabinet>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import Postdata from './components/postdata.vue'
+    import Usercreate from './components/usercreate.vue'
     import Cabinet from './components/cabinet.vue'
     export default {
         data () {
@@ -23,7 +23,7 @@
         },
         components: {
             Cabinet,
-            Postdata
+            Usercreate
         },
         methods: {
           initializeLogin(login, password) {
