@@ -2,12 +2,11 @@
     <div class="clock">
         <div class="clock-time-show">{{ time }}</div>
         <button v-on:click="regiterNewUser" class="create-user-button">Register new user</button>
-        <button v-on:click="loginExistUser" class="create-user-button">Login </button>
+        <router-link to="/login">
+            <button v-on:click="loginExistUser" class="create-user-button">Login </button>
+        </router-link>
         <div class="registration-user">
             <createuser v-if="registerUser"></createuser>
-        </div>
-        <div class="login-user">
-            <loginuser v-if="loginUser"></loginuser>
         </div>
     </div>
 </template>

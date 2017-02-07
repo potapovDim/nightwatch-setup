@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './app.vue'
+import Login from './components/login-user/index.vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -11,7 +12,7 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: App },
-    { path: '/a', component: Home }
+    { path: '/login', component: Login }
   ]
 })
 new Vue({

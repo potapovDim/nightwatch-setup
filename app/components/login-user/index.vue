@@ -3,12 +3,11 @@
     <input class="user-name" placeholder="username">
     <input class="user-password" placeholder="password">
     <button v-on:click="login" class="login-button">Login</button>
-    <li><router-link to="/a">/</router-link></li>
   </div>
 </template>
 
 <script>
-  import {postData, imitateAsync} from '../../utils/'
+  import { postData, imitateAsync } from '../../utils/'
 
   export default {
     data() {
@@ -18,10 +17,10 @@
       login() {
         const name = document.getElementsByClassName('user-name')[0].value
         const password = document.getElementsByClassName('user-password')[0].value
-        if(name && password) {
+        if (name && password) {
           const url = 'http://localhost:4422/login'
-          const data = {name, password}
-          postData({ url, data  })
+          const data = { name, password }
+          postData({ url, data })
         }
       },
       initResponseData(status, data) {
@@ -31,8 +30,9 @@
       }
     }
   }
+
 </script>
 
 <style>
-  
+
 </style>
