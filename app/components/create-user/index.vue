@@ -12,19 +12,18 @@
       </div>
       <div v-if="success" class="success">
         User success created
+        {{password}}
       </div>
       <div v-if="warning" class="warning">
         User with this user name already exist
       </div>
-      <div class="sucess-registration-message">
-        {{password}}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { captchaGenerat, postData } from '../../utils/'
+  import { captchaGenerat, postData, imitateAsync } from '../../utils/'
   export default {
     data() {
       return {
@@ -33,6 +32,7 @@
         success: null,
         warning: null,
         password: null,
+        show_password: false,
         captcha_warning: false
       }
     },
@@ -60,7 +60,15 @@
         body.yourPassword ? this.password = body.yourPassword : null
         status === 404
           ? this.warning = true
-          : this.success = true  
+          : this.showPassword()
+
+      },
+      showPassword(){
+        this.success = true
+        const refreshSuccess = () => {
+          this.success = false
+        }
+        imitateAsync(3000, refreshSuccess)
       },
       submitData() {
         const url = 'http://localhost:4422/'
