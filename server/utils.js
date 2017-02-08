@@ -23,7 +23,7 @@ const testTokenGenerator = () => {
   let token = '';
   const rand = () => parseInt((Math.random() * 55).toFixed(0))
   for(let i =0; i <33; i++){
-    token += string[rand()]
+    token += stringToken[rand()]
   }
   return token
 }

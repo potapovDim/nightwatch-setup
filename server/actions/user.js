@@ -28,12 +28,12 @@ const loginUser = (User) => async(ctx) => {
   if (!user) {
     ctx.status = 403
     ctx.body = {
-      token: testTokenGenerator(),
       message: 'cant login, user does not exist'
     }
   } else {
     ctx.status = 200
     ctx.body = {
+      token: testTokenGenerator(),
       message: 'ok',
       username: user.name
     }

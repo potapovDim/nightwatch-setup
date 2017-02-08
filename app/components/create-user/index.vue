@@ -17,7 +17,7 @@
         User with this user name already exist
       </div>
       <div class="sucess-registration-message">
-        
+        {{password}}
       </div>
     </div>
   </div>
@@ -32,6 +32,7 @@
         captcha: null,
         success: null,
         warning: null,
+        password: null,
         captcha_warning: false
       }
     },
@@ -56,6 +57,7 @@
       initResponseData (status, body) {
         this.warning = false
         this.success = false
+        body.yourPassword ? this.password = body.yourPassword : null
         status === 404
           ? this.warning = true
           : this.success = true  

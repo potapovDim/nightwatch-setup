@@ -20,10 +20,12 @@
         if (name && password) {
           const url = 'http://localhost:4422/login'
           const data = { name, password }
-          postData({ url, data })
+          postData({ url, data, callback: this.initResponseData })
         }
       },
       initResponseData(status, data) {
+        imitateAsync(3000, (ar) => console.log(ar), data)
+        console.log(data)
         status === 404
           ? this.warning = true
           : this.success = true
