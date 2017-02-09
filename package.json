@@ -1,6 +1,6 @@
 {
-  "name": "SimpleApp",
-  "version": "1.0.0",
+  "name": "VuejsWithServer",
+  "version": "0.0.1",
   "description": "simple app for test training",
   "main": "index.js",
   "scripts": {
