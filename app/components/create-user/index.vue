@@ -68,7 +68,7 @@
         const refreshSuccess = () => {
           this.success = false
         }
-        imitateAsync(3000, refreshSuccess)
+        imitateAsync(3000, null , refreshSuccess)
       },
       submitData() {
         const url = 'http://localhost:4422/'

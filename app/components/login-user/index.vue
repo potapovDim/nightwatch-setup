@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { postData, imitateAsync } from '../../utils/'
+  import { postData, imitateAsync, localStorageService } from '../../utils/'
   import warning from './warning.vue'
   import success from './success.vue'
   import loading from '../helpers/loading.vue'
@@ -47,16 +47,18 @@
         this.loading = false
         this.$router.push('/cabinet')
       },
+      setToken(token){
+        localStorageService.set('token', token)
+        imitateAsync(500, null, this.redirectToCabinet)
+      },
       initResponseData(status, data) {
         status === 404
           ? this.warning = true
-          : this.success = true
+          : this.setToken(data.token)
         this.loading = true
-        imitateAsync(5000, null, this.redirectToCabinet)
       }
     }
   }
-
 </script>
 
 <style>

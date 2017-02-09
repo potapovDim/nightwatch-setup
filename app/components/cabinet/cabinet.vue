@@ -42,28 +42,5 @@
 </script>
 
 <style>
-    .login-data {
-      border: solid;
-      border-radius: 10%;
-      border-color: green;
-      background: cornflowerblue;
-      text-align: center;
-      text-decoration-style: solid;
-      height: 30px;
-    }
-    .center-data {
-      text-align: center
-    }
-    .warning-message {
-      color: red;
-      text-align: center;
-    }
-    .login-button {
-      height: 36px;
-      border-color: green;
-      background: cornflowerblue;
-      text-align: center;
-      border: solid;
-      border-radius: 20%;
-    }
+  
 </style>

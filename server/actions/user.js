@@ -10,7 +10,7 @@ const registerUser = (User) => async(ctx) => {
     }
   } else {
     const pass = passgenerator()
-    const newUser = new User({name: `${ctx.request.body.name}`, password: pass})
+    const newUser = new User({name: `${ctx.request.body.name}`, password: pass ,createdAt: new Date().toString()})
     const a = await newUser.save()
     ctx.status = 201
     ctx.body = {
@@ -20,20 +20,23 @@ const registerUser = (User) => async(ctx) => {
   }
   return ctx
 }
-
 const loginUser = (User) => async(ctx) => {
   const {name, password} = ctx.request.body
   console.log(name, password)
   const user = await User.findOne({name, password})
+  const id = user._id 
+  console.log(user._id)
   if (!user) {
     ctx.status = 404
     ctx.body = {
       message: 'cant login, user does not exist'
     }
   } else {
+    const token = testTokenGenerator() 
+    await User.update({_id: id }, {$set: {token}})
     ctx.status = 200
     ctx.body = {
-      token: testTokenGenerator(),
+      token,
       message: 'ok',
       username: user.name
     }
