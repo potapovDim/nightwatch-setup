@@ -3,15 +3,29 @@
     <input class="user-name" placeholder="username">
     <input class="user-password" placeholder="password">
     <button v-on:click="login" class="login-button">Login</button>
+    <div v-if="success">
+      <success></success>
+    </div>
+    <div v-if="warning">
+      <warning></warning>
+    </div>
   </div>
 </template>
 
 <script>
   import { postData, imitateAsync } from '../../utils/'
-
+  import warning from './warning.vue'
+  import success from './warning.vue'
   export default {
+    components: {
+      warning,
+      success
+    },
     data() {
-      return {}
+      return {
+        warning: false,
+        success: false
+      }
     },
     methods: {
       login() {
@@ -32,6 +46,7 @@
       }
     }
   }
+
 </script>
 
 <style>

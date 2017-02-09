@@ -26,7 +26,7 @@ const loginUser = (User) => async(ctx) => {
   console.log(name, password)
   const user = await User.findOne({name, password})
   if (!user) {
-    ctx.status = 403
+    ctx.status = 404
     ctx.body = {
       message: 'cant login, user does not exist'
     }
