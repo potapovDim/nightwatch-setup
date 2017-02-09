@@ -31,7 +31,7 @@ const captchaGenerat = (length) => {
   return pass
 }
 
-const imitateAsync = (ms, callback, args) => new Promise((resolve, reject) => {
+const imitateAsync = (ms, args, callback) => new Promise((resolve, reject) => {
   setTimeout(() => {
     callback && callback(args)
     resolve(true)

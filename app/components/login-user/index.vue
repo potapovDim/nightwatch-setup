@@ -15,7 +15,7 @@
 <script>
   import { postData, imitateAsync } from '../../utils/'
   import warning from './warning.vue'
-  import success from './warning.vue'
+  import success from './success.vue'
   export default {
     components: {
       warning,
@@ -37,12 +37,14 @@
           postData({ url, data, callback: this.initResponseData })
         }
       },
+      redirectToCabinet() {
+        this.$router.push('/cabinet')
+      },
       initResponseData(status, data) {
-        imitateAsync(3000, (ar) => console.log(ar), data)
-        console.log(data)
         status === 404
           ? this.warning = true
           : this.success = true
+        imitateAsync(5000, null, this.redirectToCabinet)
       }
     }
   }

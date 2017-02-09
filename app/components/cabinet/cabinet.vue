@@ -1,15 +1,12 @@
 <template>
     <div class="cabinet">
       <div class="center-data">
-        <input  v-on:input="removeWarning()" placeholder="login name" class="login-data"/>
-        <input  v-on:input="removeWarning()" placeholder="password" class="login-data"/>
-        <button v-on:click="login()" class="login-button">Login</button>
+        cabinet
       </div>
     </div>
 </template>
 
 <script>
-    import {postData} from '../utils/' 
     export default {
         data () {
           return {

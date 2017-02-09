@@ -1,6 +1,5 @@
 <template>
     <div class="clock">
-        <div class="clock-time-show">{{ time }}</div>
         <button v-on:click="regiterNewUser" class="create-user-button">Register new user</button>
         <button v-on:click="loginExistUser" class="create-user-button">Login </button>
         <div class="registration-user">
@@ -13,14 +12,12 @@
 </template>
 
 <script>
-    import { postData } from '../utils/'
     import createuser from './create-user/index.vue'
     import loginuser from './login-user/index.vue'
 
     export default {
         data() {
             return {
-                time: "00:00:00",
                 registerUser: false,
                 loginUser: false
             }
@@ -29,25 +26,7 @@
             loginuser,
             createuser
         },
-        mounted() {
-            this.startTime()
-        },
         methods: {
-            startTime() {
-                var today = new Date();
-                var h = today.getHours();
-                var m = today.getMinutes();
-                var s = today.getSeconds();
-                m = this.checkTime(m);
-                s = this.checkTime(s);
-
-                this.time = h + ":" + m + ":" + s;
-                const t = setTimeout(this.startTime, 500);
-            },
-            checkTime(i) {
-                if (i < 10) { i = "0" + i };
-                return i;
-            },
             regiterNewUser() {
                 this.registerUser = !this.registerUser
                 this.loginUser = false
