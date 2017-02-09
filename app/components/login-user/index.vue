@@ -9,6 +9,9 @@
     <div v-if="warning">
       <warning></warning>
     </div>
+    <div> 
+      <loading v-if="loading"></loading>
+    </div>
   </div>
 </template>
 
@@ -16,15 +19,18 @@
   import { postData, imitateAsync } from '../../utils/'
   import warning from './warning.vue'
   import success from './success.vue'
+  import loading from '../helpers/loading.vue'
   export default {
     components: {
       warning,
-      success
+      success,
+      loading
     },
     data() {
       return {
         warning: false,
-        success: false
+        success: false,
+        loading: false
       }
     },
     methods: {
@@ -38,12 +44,14 @@
         }
       },
       redirectToCabinet() {
+        this.loading = false
         this.$router.push('/cabinet')
       },
       initResponseData(status, data) {
         status === 404
           ? this.warning = true
           : this.success = true
+        this.loading = true
         imitateAsync(5000, null, this.redirectToCabinet)
       }
     }

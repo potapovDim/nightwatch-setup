@@ -2,12 +2,11 @@
     <div>
         <h2>{{ msg }}</h2>
         <div class="clock-time-show">{{ time }}</div>
-        <initial-page></initial-page>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import InitialPage from './components/initial-page.vue'
     export default {
         data() {
             return {
@@ -17,9 +16,6 @@
         },
         mounted() {
             this.startTime()
-        },
-        components: {
-            InitialPage
         },
         methods: {
             startTime() {
