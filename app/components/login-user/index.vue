@@ -47,14 +47,15 @@
         this.loading = false
         this.$router.push('/cabinet')
       },
-      setToken(token){
+      setUserData(token, id){
         localStorageService.set('token', token)
+        localStorageService.set('id', id)
         imitateAsync(500, null, this.redirectToCabinet)
       },
       initResponseData(status, data) {
         status === 404
           ? this.warning = true
-          : this.setToken(data.token)
+          : this.setUserData(data.token, data.id)
         this.loading = true
       }
     }

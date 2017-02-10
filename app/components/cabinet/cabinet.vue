@@ -7,6 +7,8 @@
 </template>
 
 <script>
+    import {getData, postData, localStorageService} from '../../utils/index'
+
     export default {
         data () {
           return {
@@ -16,27 +18,22 @@
           }
         },
         mounted () {
+          this.getUserJobs()
         },
         methods: {
-            removeWarning () {
-              const warningMessage = document.getElementsByClassName('warning-message')
-              const parent = document.getElementsByClassName('cabinet')[0]
-              if(warningMessage[0]) {
-                parent.removeChild(warningMessage[0])
-              }
-            },
-            login () {
-              const inputs = document.getElementsByTagName('input')
-              if(inputs[0].value === this.username && inputs[1].value === this.password) {
-                console.log(this.username , this.password , inputs[0].value ,inputs[1].value)
-              }
-              else {
-                const div = document.createElement('div')
-                div.innerHTML = 'Invalid user name or password'
-                div.className = 'warning-message'
-                document.getElementsByClassName('cabinet')[0].appendChild(div)
-              }
+          getUserJobs(){
+            const url = 'http://localhost:4422/jobslist'
+            const headers = {
+              id: localStorageService.get('id'),
+              token: localStorageService.get('token')
             }
+            getData({url, headers, callback: (status, body) => {
+              status === 200 ? this.jobs = body.userJobs : null
+            }})
+          },
+          createNewJob(job){
+            this.jobs.push(job)
+          }
         }
     }
 </script>

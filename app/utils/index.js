@@ -1,8 +1,13 @@
+const setHeaders = (xhr, customHeaders) => {
+  Object.keys(customHeaders).forEach(key => {
+    xhr.setRequestHeader(key, customHeaders[key])
+  })
+}
+
 const postData = ({url, data, callback}) => {
   const xhr = new XMLHttpRequest()
   xhr.open("POST", url, true)
   xhr.setRequestHeader('Content-type', 'application/json')
-
   xhr.onreadystatechange = () => {
     xhr.readyState === 4 && callback && callback(xhr.status, JSON.parse(xhr.response))
   }
@@ -10,15 +15,16 @@ const postData = ({url, data, callback}) => {
 }
 
 
-const getData = ({url, data, callback}) => {
+const getData = ({url, headers, callback}) => {
   const xhr = new XMLHttpRequest()
   xhr.open("GET", url, true)
   xhr.setRequestHeader('Content-type', 'application/json')
+  headers && setHeaders(xhr, headers)
 
   xhr.onreadystatechange = () => {
     xhr.readyState === 4 && callback && callback(xhr.status, JSON.parse(xhr.response))
   }
-  xhr.send(JSON.stringify(data))
+  xhr.send()
 }
 
 const captchaGenerat = (length) => {

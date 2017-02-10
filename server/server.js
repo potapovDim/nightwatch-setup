@@ -6,15 +6,24 @@ const logger = require('koa-logger')
 const mongoose = require('mongoose')
 const bodyParser = require('koa-bodyparser')
 const cors = require('koa-cors')
+
+
+
 const {createUserModel} = require('./models/User')
+const {createJobModel} = require('./models/Jobs')
+
 const {registerUser, loginUser}  = require('./actions/user')
+const {addNewJob, getJobList}  = require('./actions/jobs')
 
 
 const connectedMongoose = mongoose.connect('mongodb://127.0.0.1:27050')
 const User = createUserModel(connectedMongoose)
+const Job = createJobModel(connectedMongoose)
 
 router.post('/', registerUser(User))
 router.post('/login', loginUser(User))
+router.post('/job', addNewJob(Job, User))
+router.get('/jobslist', getJobList(Job, User))
 
 app.use(bodyParser())
 app.use(cors())
