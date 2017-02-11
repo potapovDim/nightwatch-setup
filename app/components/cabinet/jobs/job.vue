@@ -5,13 +5,13 @@
       <button v-on:click="checkAsDone(jobId)">Check as done</button>
     </div>
     <div>
-      Job name : {{name}}
+      Job name : {{job.name}}
     </div>
     <div>
-      Job executor : {{executor}}
+      Job executor : {{job.executor}}
     </div>
     <div>
-      Job deadline : {{deadline}}
+      Job deadline : {{job.deadline}}
     </div>
   </div>
 </template>
@@ -19,11 +19,7 @@
 <script>
   export default {
     props: {
-      jobId: String,
-      name: String,
-      executor: String,
-      deadline: String,
-      deleteJob: Function
+      job: Object
     }
   }
 
