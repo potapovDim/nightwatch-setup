@@ -18,6 +18,9 @@
 
 <script>
   export default {
+    mounted(){
+      console.log('!!!!!!!!!!!')
+    },
     props: {
       job: Object
     }

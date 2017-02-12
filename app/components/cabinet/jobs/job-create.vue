@@ -6,7 +6,7 @@
     <input type="text" id="job-executor" placeholder="job executor" v-model="job.executor">
     <label for="job-deadline">Job deadline</label>
     <input type="text" id="job-deadline" placeholder="job deadline" v-model="job.deadline">
-    <button v-on:click="createNewJob(job)">
+    <button v-on:click="click">
       Create new job
     </button>
   </div>
@@ -17,11 +17,19 @@
     props: {
       createNewJob: Function
     },
-    data: {
-      job: {
-        name: null,
-        executor: null,
-        deadline: null
+    data () {
+      return {
+        job: {
+          name: null,
+          executor: null,
+          deadline: null
+        }
+      }
+    },
+    methods: {
+      click(){
+        this.createNewJob(this.job)
+        console.log('clicer,', this.job ,this.createNewJob)
       }
     }
   }

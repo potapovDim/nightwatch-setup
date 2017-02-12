@@ -25,13 +25,13 @@ const loginUser = (User) => async(ctx) => {
   const {name, password} = ctx.request.body
   console.log(name, password)
   const user = await User.findOne({name, password})
-  const id = user._id 
   if (!user) {
     ctx.status = 404
     ctx.body = {
       message: 'user.does.not.exist'
     }
   } else {
+    const id = user._id 
     const token = testTokenGenerator() 
     await User.update({_id: id }, {$set: {token}})
     ctx.status = 200
