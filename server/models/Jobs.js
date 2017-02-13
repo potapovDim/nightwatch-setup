@@ -1,6 +1,7 @@
 const createJobModel = mongoose => {
     const jobShema = mongoose.Schema({
-      ownerId: String, 
+      ownerId: String,
+      jobDone: Boolean,
       jobAssigner: String, 
       jobName: String,
       executor: String,

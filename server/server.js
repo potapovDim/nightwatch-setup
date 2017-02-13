@@ -13,7 +13,7 @@ const {createUserModel} = require('./models/User')
 const {createJobModel} = require('./models/Jobs')
 
 const {registerUser, loginUser}  = require('./actions/user')
-const {addNewJob, getJobList}  = require('./actions/jobs')
+const {addNewJobs, getJobList}  = require('./actions/jobs')
 
 
 const connectedMongoose = mongoose.connect('mongodb://127.0.0.1:27050')
@@ -22,7 +22,7 @@ const Job = createJobModel(connectedMongoose)
 
 router.post('/', registerUser(User))
 router.post('/login', loginUser(User))
-router.post('/job', addNewJob(Job, User))
+router.post('/jobslist', addNewJobs(Jobs, User))
 router.get('/jobslist', getJobList(Job, User))
 
 app.use(bodyParser())
