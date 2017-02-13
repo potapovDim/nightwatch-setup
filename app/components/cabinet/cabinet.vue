@@ -9,6 +9,9 @@
       <div>
         <createjob v-bind:createNewJob="createNewJob"></createjob>
       </div>
+      <div>
+         <router-link to="/">Log out</router-link>
+      </div>
     </div>
 </template>
 
@@ -22,16 +25,15 @@
           return {
             friends :[],
             relatives: [],
-            jobs: [{
-              name:'test',
-              executor:'test',
-              deadline: 'test'
-            }]
+            jobs: []
           }
         },
         components: {
           joblist,
           createjob
+        },
+        destroyed () {
+          this.sendDataToServer()
         },
         mounted () {
           this.getUserJobs()
@@ -39,9 +41,9 @@
         methods: {
           initJobs(status, {userJobs}) {
             console.log('jobs', userJobs)
-            // status === 200
-            //     ? this.jobs = userJobs
-            //     : null
+            status === 200
+                ? this.jobs = userJobs
+                : null
           },
           getUserJobs(){
             const url = 'http://localhost:4422/jobslist'

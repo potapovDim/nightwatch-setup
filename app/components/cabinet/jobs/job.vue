@@ -1,8 +1,8 @@
 <template>
   <div class="job">
     <div class="job-controlers">
-      <button v-on:click="deleteJob(jobId)">Delete Job</button>
-      <button v-on:click="checkAsDone(jobId)">Check as done</button>
+      <button v-on:click="deleteJob(job, index)">Delete Job</button>
+      <button v-on:click="checkAsDone(job, index)">Check as done</button>
     </div>
     <div>
       Job name : {{job.name}}
