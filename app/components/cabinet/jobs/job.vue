@@ -1,7 +1,7 @@
 <template>
   <div class="job">
     <div class="job-controlers">
-      <button v-on:click="deleteJob(job, index)">Delete Job</button>
+      <button v-on:click="deleteJob(index)">Delete Job</button>
       <button v-on:click="checkAsDone(job, index)">Check as done</button>
     </div>
     <div>
@@ -19,10 +19,11 @@
 <script>
   export default {
     mounted(){
-      console.log('!!!!!!!!!!!')
     },
     props: {
-      job: Object
+      index: Number,
+      job: Object,
+      deleteJob: Function
     }
   }
 

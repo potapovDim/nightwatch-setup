@@ -1,7 +1,10 @@
 <template>
     <div class="cabinet">
       <div class="job-list">   
-        <joblist v-bind:jobs="jobs"></joblist>
+        <joblist 
+            v-bind:jobs="jobs"
+            v-bind:deleteJob="deleteJob">
+        </joblist>
       </div>
       <div class="center-data">
         cabinet
@@ -45,7 +48,7 @@
                 ? this.jobs = userJobs
                 : null
           },
-          getUserJobs(){
+          getUserJobs() {
             const url = 'http://localhost:4422/jobslist'
             const headers = {
               id: localStorageService.get('id'),
@@ -53,10 +56,20 @@
             }
             getData({url, headers, callback: this.initJobs})
           },
-          createNewJob(job){
+          createNewJob(job) {
             this.jobs.push(job)
+          },
+          sendDataToServer() {
+
+          },
+          deleteJob(index) {
+            if (this.jobs[index]) {
+              this.jobs.splice(index, 1)
+            } else {
+              return
+            }
           }
-        }
+      }
     }
 </script>
 

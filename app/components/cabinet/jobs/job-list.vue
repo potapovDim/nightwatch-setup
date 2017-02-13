@@ -1,7 +1,11 @@
 <template>
   <div class="job-list"> 
-    <template v-if="jobs && jobs.length" v-for="job in jobs">
-      <job v-bind:job="job"></job>
+    <template v-if="jobs && jobs.length" v-for="(job, index) in jobs">
+      <job 
+            v-bind:job="job"
+            v-bind:index="index"
+            v-bind:deleteJob=deleteJob>
+      </job>
     </template>
 </div>
 </template>
@@ -16,20 +20,14 @@
             job
         },
         props: {
+            deleteJob: Function,
             jobs: Array
         },
         mounted() {
-            console.log('jobs', this.jobs)
+            console.log(this.jobs, this.deleteJob)
         },
         methods: {
-            deleteJob(index) {
-                if (this.jobs[index]) {
-                  this.jobs.splice(index, 1)
-                }
-                else {
-                  return
-                }
-            }
+           
         }
     }
 </script>
