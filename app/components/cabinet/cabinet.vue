@@ -1,14 +1,14 @@
 <template>
   <div class="cabinet">
-    <div class="job-list">
-      <div class="menu">
-        <div class="jobs-view">Show jobs</div>
-        <div class="friends-view">Show friends</div>
+    <div class="menu">
+      <div class="jobs-view">
+        <div>Show jobs</div>
+        <div class="jobs">
+          <joblist v-bind:jobs="jobs" v-bind:deleteJob="deleteJob"></joblist>
+          <createjob v-bind:createNewJob="createNewJob"></createjob>
+        </div>
       </div>
-      <div class="jobs">
-        <joblist v-bind:jobs="jobs" v-bind:deleteJob="deleteJob"></joblist>
-        <createjob v-bind:createNewJob="createNewJob"></createjob>
-      </div>
+      <div class="friends-view">Show friends</div>
     </div>
     <div>
       <router-link to="/">Log out</router-link>
@@ -20,7 +20,6 @@
   import { getData, postData, localStorageService } from '../../utils/index'
   import joblist from './jobs/job-list.vue'
   import createjob from './jobs/job-create.vue'
-
   export default {
     data() {
       return {
@@ -88,10 +87,8 @@
   .menu {
     display: flex;
     flex-wrap: wrap;
-  } 
-  .menu .jobs-view {
-
   }
+  
   .jobs {
     display: none;
   }
@@ -101,7 +98,7 @@
     height: 100px;
   }
   
-  .job-list:hover .jobs {
+  .jobs-view:hover .jobs {
     position: absolute;
     display: block;
   }
