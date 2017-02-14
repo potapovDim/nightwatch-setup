@@ -17,7 +17,7 @@
     props: {
       createNewJob: Function
     },
-    data () {
+    data() {
       return {
         job: {
           name: null,
@@ -28,8 +28,8 @@
     },
     methods: {
       click(){
-        this.createNewJob(this.job)
-        console.log('clicer,', this.job ,this.createNewJob)
+        const {name, executor, deadline} = this.job
+        this.createNewJob({name, executor, deadline})
       }
     }
   }

@@ -1,16 +1,14 @@
 const { equalUser, passgenerator, testTokenGenerator } = require('../utils')
 
-const addNewJobs = (Jobs, User) => async(ctx) => {
+const addNewJobs = (Job, User) => async(ctx) => {
     const { id, token } = ctx.request.body
     const userExist = User.findOne({ _id: id, token })
 
     if (userExist) {
         const { jobs } = ctx.request.body
-        jobs.forEach(job => {
-            const { jobAssigner, jobName, executor, deadline } = job
-            const newJob = new Job({ ownerId: id, jobAssigner, jobName, executor, deadline, createdAt: new Date().toString() })
-            await newJob.save()
-        })
+        for(const {jobAssigner, jobName, executor, deadline, jobDone} of jobs) {
+            await Job({ownerId: id, jobAssigner,jobName, executor, jobDone ,deadline, createdAt: new Date().toString()}).save()
+        }
         ctx.status = 201
         ctx.body = {
             message: 'Job success created'
@@ -45,6 +43,6 @@ const getJobList = (Job, User) => async(ctx) => {
 }
 
 module.exports = {
-    addNewJob,
+    addNewJobs,
     getJobList
 }

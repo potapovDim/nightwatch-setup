@@ -4,10 +4,11 @@ const setHeaders = (xhr, customHeaders) => {
   })
 }
 
-const postData = ({url, data, callback}) => {
+const postData = ({url, data, callback, headers}) => {
   const xhr = new XMLHttpRequest()
   xhr.open("POST", url, true)
   xhr.setRequestHeader('Content-type', 'application/json')
+  headers && setHeaders(xhr, headers)
   xhr.onreadystatechange = () => {
     xhr.readyState === 4 && callback && callback(xhr.status, JSON.parse(xhr.response))
   }

@@ -43,7 +43,7 @@
         font: 100% Helvetica, sans-serif;
         color: #ecf0f1;
         text-align: left;
-        background-color: cadetblue;
+        background-color: firebrick;
     }
     
     .container {

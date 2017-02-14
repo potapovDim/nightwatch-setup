@@ -42,10 +42,10 @@
 
 <style>
     .clock-time-show {
-        color: darkturquoise;
+        color: sandybrown;
         font-size: 80px;
         line-height: 1.2em;
-        margin: 10px 0 100px;
+        margin: 10px 0 10px;
     }
     
     .success {
@@ -59,7 +59,7 @@
     }
     
     .create-user-button {
-        background: rgba(100, 150, 15, 0.8);
+        background: orange;
         border-radius: 4px;
         width: 200px;
         height: 30px;

@@ -22,8 +22,9 @@ const Job = createJobModel(connectedMongoose)
 
 router.post('/', registerUser(User))
 router.post('/login', loginUser(User))
-router.post('/jobslist', addNewJobs(Jobs, User))
+router.post('/jobslist', addNewJobs(Job, User))
 router.get('/jobslist', getJobList(Job, User))
+
 
 app.use(bodyParser())
 app.use(cors())
