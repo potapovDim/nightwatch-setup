@@ -47,21 +47,19 @@ const imitateAsync = (ms, args, callback) => new Promise((resolve, reject) => {
 
 const localStorageService = {
   set: (key, value) => {
-    if(typeof value !== 'string' ){
+    if (typeof value !== 'string') {
       localStorage.setItem(key, JSON.stringify(value))
-    }
-    else {
+    } else {
       localStorage.setItem(key, value)
     }
   },
-  get: (key, params = {}) => {
+  get: (key) => {
     if (!localStorage.getItem(key)) {
-      return 
+      return
     }
     try {
-      return params.noparse
-        ? localStorage.getItem(key)
-        : JSON.parse(localStorage.getItem(key))
+      console.log(key)
+      return localStorage.getItem(key)
     } catch (error) {
       return undefined
     }
@@ -69,7 +67,7 @@ const localStorageService = {
   clear: key => {
     localStorage.clear(key)
   },
-  clearAll : () => {
+  clearAll: () => {
     localStorage.state = null
   }
 }

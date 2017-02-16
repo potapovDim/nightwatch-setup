@@ -1,17 +1,19 @@
 <template>
   <div class="cabinet">
-    <div class="jobs-part-cabinet">
-      <input type="checkbox" id="toggle-jobs" />
-      <label for="toggle-jobs"></label>
-      <div class="container"></div>
-      <div class="message">
-        <h1> JOBS</h1>
-        <div class="jobs">
-          <joblist v-bind:jobs="jobs" v-bind:deleteJob="deleteJob"></joblist>
-          <createjob v-bind:createNewJob="createNewJob"></createjob>
-        </div>
+    <div v-if="currentView ==='jobs'" class="jobs">
+      <joblist v-bind:jobs="jobs" v-bind:deleteJob="deleteJob"></joblist>
+      <createjob v-bind:createNewJob="createNewJob"></createjob>
+    </div>
+    <div v-else-if="currentView ==='friends'">
+      <div>
+        Users
       </div>
     </div>
+
+
+
+    <button type="button" v-on:click="changeView('jobs')">Jobs</button>
+    <button type="button" v-on:click="changeView('friends')">Friends</button>
     <button class="logout">  
       <router-link to="/">Log out</router-link>
     </button>
@@ -25,6 +27,7 @@
   export default {
     data() {
       return {
+        currentView: null,
         friends: [],
         relatives: [],
         jobs: []
@@ -41,6 +44,9 @@
       this.getUserJobs()
     },
     methods: {
+      changeView(view) {
+        this.currentView !== view ? this.currentView = view : this.currentView = null
+      },
       initJobs(status, {userJobs}) {
         console.log('jobs', userJobs)
         status === 200
@@ -49,6 +55,8 @@
       },
       getUserJobs() {
         const url = 'http://localhost:4422/jobslist'
+        console.log(localStorageService.get('id'),localStorageService.get('token'))
+        console.log(localStorageService.get('id'),localStorageService.get('token'))
         const headers = {
           id: localStorageService.get('id'),
           token: localStorageService.get('token')
@@ -65,8 +73,11 @@
           token: localStorageService.get('token')
         }
         const data = {
+          id: localStorageService.get('id'),
+          token: localStorageService.get('token'),
           jobs: this.jobs
         }
+        console.log('send data', this.jobs)
         postData({ url, data, callback: this.asserResponse, headers })
 
       },
@@ -74,6 +85,7 @@
         console.log(status, body)
       },
       deleteJob(index) {
+        console.log(this.jobs)
         if (this.jobs[index]) {
           this.jobs.splice(index, 1)
         } else {
@@ -86,75 +98,9 @@
 </script>
 
 <style>
-  .message {
-    background: #181818;
-    color: #FFF;
-    position: absolute;
-    top: -250px;
-    left: 0;
-    width: 100%;
-    height: 250px;
-    padding: 20px;
-    transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
-    overflow: hidden;
-    box-sizing: border-box;
-  }
   
-  .message h1 {
-    color: #FFF;
-  }
-  
-  #toggle-jobs {
-    position: absolute;
-    appearance: none;
-    cursor: pointer;
-    left: -100%;
-    top: -100%;
-  }
-  
-  #toggle-jobs + label {
-    position: absolute;
-    cursor: pointer;
-    padding: 10px;
-    background: #26ae90;
-    width: 100px;
-    border-radius: 3px;
-    padding: 8px 10px;
-    color: #FFF;
-    line-height: 20px;
-    font-size: 12px;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-    cursor: pointer;
-    margin: 20px 50px;
-    transition: all 500ms ease;
-  }
-  
-  #toggle-jobs + label:after {
-    content: "Open-jobs"
-  }
-  
-  .container {
-    transition: margin 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
-  }
-  
-  #toggle-jobs:checked ~ .message {
-    top: 0;
-  }
-  
-  #toggle-jobs:checked ~ .container {
-    margin-top: 250px;
-  }
-  
-  #toggle-jobs:checked + label {
-    background: #dd6149;
-  }
-  
-  #toggle-jobs:checked + label:after {
-    content: "Close-jobs"
-  }
-
   .logout {
+    top: -98%;
     width: 100px;
     height: 30px;
     background: rgba(250, 100, 100, 0.5);

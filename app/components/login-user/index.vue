@@ -38,7 +38,6 @@
         const name = document.getElementsByClassName('user-name')[0].value
         const password = document.getElementsByClassName('user-password')[0].value
         if (name && password) {
-          console.log("!!!!!!!!")
           const url = 'http://localhost:4422/login'
           const data = { name, password }
           postData({ url, data, callback: this.initResponseData })
