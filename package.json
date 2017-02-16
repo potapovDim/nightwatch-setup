@@ -7,6 +7,7 @@
     "test": "./test.sh",
     "dev": "webpack-dev-server --open --inline --hot --quiet --port 8082",
     "api": "nodemon --harmony ./server/server.js --port 4422",
+    "api:test": "NODE_ENV=test nodemon --harmony ./server/server.js --port 4422",
     "test:api": "NODE_ENV=test mocha --harmony --trace-deprecation --timeout 50000 $(find ./apitests/ -path '*.spec.*')"
   },
   "author": "Potapov Dmytro",

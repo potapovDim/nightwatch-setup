@@ -8,7 +8,7 @@ const registerUser = (User) => async(ctx) => {
       message: 'user already exist'
     }
   } else {
-    const pass = passgenerator()
+    const pass = process.env.NODE_ENV !== 'test' ? passgenerator() : 'test'
     const newUser = new User({name: `${ctx.request.body.name}`, password: pass ,createdAt: new Date().toString()})
     await newUser.save()
     ctx.status = 201
