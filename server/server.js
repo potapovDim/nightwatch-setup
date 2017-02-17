@@ -7,26 +7,31 @@ const mongoose = require('mongoose')
 const bodyParser = require('koa-bodyparser')
 const cors = require('koa-cors')
 
-
-
 const {createUserModel} = require('./models/User')
 const {createJobModel} = require('./models/Jobs')
+const {createFriendModel} = require('./models/Friend')
 
 const {registerUser, loginUser}  = require('./actions/user')
 const {addNewJobs, getJobList, deleteJob}  = require('./actions/jobs')
-
+const {addNewFriends, getFriendsList, deleteFriend}  = require('./actions/friends')
 
 const connectedMongoose = mongoose.connect('mongodb://127.0.0.1:27050')
+
 const User = createUserModel(connectedMongoose)
 const Job = createJobModel(connectedMongoose)
+const Friend = createFriendModel(connectedMongoose)
 
 router.post('/', registerUser(User))
 
 router.post('/login', loginUser(User))
 
 router.post('/jobslist', addNewJobs(Job, User))
-router.post('/jobdelete', deleteJob(Job, User))
 router.get('/jobslist', getJobList(Job, User))
+router.post('/jobdelete', deleteJob(Job, User))
+
+router.post('/friendslist', addNewFriends(Friend, User))
+router.get('/friendslist', getFriendsList(Friend, User))
+router.post('/frineddelete', deleteFriend(Friend, User))
 
 
 app.use(bodyParser())

@@ -1,18 +1,22 @@
 <template>
-    <div class="friend-list">
-        <template v-if="friends && friends.length" v-for="(friend, index) in friends">
-            <friend v-bind:friend="friend" v-bind:index="index" v-bind:deleteFriend="deleteFriend">
-            </friend>
-        </template>
+    <div>
+        <div class="friend-list">
+            <template v-if="friends && friends.length" v-for="(friend, index) in friends">
+                <friend v-bind:friend="friend" v-bind:index="index" v-bind:deleteFriend="deleteFriend">
+                </friend>
+            </template>
+        </div>
+        <friendcreate v-bind:createFriend="createFriend"></friendcreate>
     </div>
 </template>
 
 <script>
+    import { postData, localStorageService, getData } from '../../../utils/'
     import friend from './friend.vue'
     import friendcreate from './friend-create.vue'
 
     export default {
-        data () {
+        data() {
             return {
                 friends: []
             }
@@ -24,6 +28,7 @@
         props: {
         },
         mounted() {
+            console.log('!!!!!!!!!!!')
         },
         methods: {
             initFriends(status, {userFriends}) {

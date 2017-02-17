@@ -4,12 +4,8 @@
       <joblist></joblist>
     </div>
     <div v-else-if="currentView ==='friends'">
-      <div>
-        Users
-      </div>
+        <friendslist></friendslist>
     </div>
-
-
 
     <button type="button" v-on:click="changeView('jobs')">Jobs</button>
     <button type="button" v-on:click="changeView('friends')">Friends</button>
@@ -22,6 +18,8 @@
 <script>
   import { getData, postData, localStorageService } from '../../utils/index'
   import joblist from './jobs/job-list.vue'
+  import friendslist from './friends/friend-list.vue'
+
   export default {
     data() {
       return {
@@ -30,6 +28,7 @@
     },
     components: {
       joblist,
+      friendslist
     },
     mounted() {
     },

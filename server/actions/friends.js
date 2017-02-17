@@ -1,21 +1,20 @@
-const addNewJobs = (Job, User) => async(ctx) => {
+const addNewFriends = (Friend, User) => async(ctx) => {
     const { id, token } = ctx.request.headers
     const userExist = await User.findOne({ _id: id, token })
     if (userExist) {
-        const { jobs, jobsForDell } = ctx.request.body
-        console.log(jobs)
-        for(const {_id ,jobAssigner, jobName, executor, deadline, jobDone} of jobs) {
+        const { friends } = ctx.request.body
+        for(const {_id , name, lastname, phone, social} of friends) {
             const jobExist = await Job.findOne({_id, ownerId: id})
             if(jobExist) {
                 continue
             }
             else {
-                await Job({ownerId: id, jobAssigner, jobName, executor, jobDone ,deadline, createdAt: new Date().toString()}).save()
+                await Friend({ownerId: id, name, lastname, phone, social}).save()
             }
         }
         ctx.status = 201
         ctx.body = {
-            message: 'Job success created'
+            message: 'Friend success created'
         }
     } else {
         ctx.status = 404
@@ -26,15 +25,14 @@ const addNewJobs = (Job, User) => async(ctx) => {
     return ctx
 }
 
-const getJobList = (Job, User) => async(ctx) => {
+const getFriendsList = (Friend, User) => async(ctx) => {
     const { id, token } = ctx.request.headers
     const userExist = await User.findOne({ _id: id, token })
     if (userExist) {
-        const { jobAssigner, jobName, executor, deadline } = ctx.request.body
-        const jobs = await Job.find({ ownerId: id })
+        const friends = await Friend.find({ ownerId: id })
         ctx.status = 200
         ctx.body = {
-            userJobs: jobs
+            userFriends: friends
         }
     } else {
         ctx.status = 404
@@ -45,13 +43,12 @@ const getJobList = (Job, User) => async(ctx) => {
     return ctx
 }
 
-const deleteJob = (Job, User) => async(ctx) => {
+const deleteFriend = (Friend, User) => async(ctx) => {
     const { id, token } = ctx.request.headers
     const userExist = await User.findOne({ _id: id, token })
     if (userExist) {
-        const { job: {_id, ownerId}} = ctx.request.body
-        await Job.findOneAndRemove({_id , ownerId })
-        console.log('delete job')
+        const { friend: {_id, ownerId}} = ctx.request.body
+        await Friend.findOneAndRemove({_id , ownerId })
         ctx.status = 200
         ctx.body = {
             ok: 1
@@ -66,7 +63,7 @@ const deleteJob = (Job, User) => async(ctx) => {
 }
 
 module.exports = {
-    addNewJobs,
-    getJobList,
-    deleteJob
+    addNewFriends,
+    getFriendsList,
+    deleteFriend
 }

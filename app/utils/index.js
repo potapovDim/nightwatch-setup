@@ -68,7 +68,7 @@ const localStorageService = {
     localStorage.clear(key)
   },
   clearAll: () => {
-    localStorage = null
+    localStorage.clear()
   }
 }
 

@@ -2,10 +2,12 @@
   <div class="new-friend-create">
     <label for="friend-name">Name</label>
     <input type="text" id="friend-name" placeholder="friend name" v-model="friend.name">
-    <label for="friend-executor">friend executor</label>
-    <input type="text" id="friend-executor" placeholder="friend executor" v-model="friend.executor">
-    <label for="friend-deadline">friend deadline</label>
-    <input type="text" id="friend-deadline" placeholder="friend deadline" v-model="friend.deadline">
+    <label for="friend-lastname">friend lastname</label>
+    <input type="text" id="friend-lastname" placeholder="friend lastname" v-model="friend.lastname">
+    <label for="friend-phone">friend phone</label>
+    <input type="text" id="friend-phone" placeholder="friend phone" v-model="friend.phone">
+    <label for="friend-social">friend social</label>
+    <input type="text" id="friend-social" placeholder="friend social" v-model="friend.social">
     <button v-on:click="click">
       Create new friend
     </button>
@@ -15,7 +17,7 @@
 <script>
   export default {
     props: {
-      createNewFriend: Function
+      createFriend: Function
     },
     data() {
       return {
@@ -30,7 +32,7 @@
     methods: {
       click(){
         const {name, lastname, phone, social} = this.friend
-        this.createNewFriend({name, lastname, phone, social})
+        this.createFriend({name, lastname, phone, social})
       }
     }
   }
