@@ -4,8 +4,8 @@ const addNewFriends = (Friend, User) => async(ctx) => {
     if (userExist) {
         const { friends } = ctx.request.body
         for(const {_id , name, lastname, phone, social} of friends) {
-            const jobExist = await Job.findOne({_id, ownerId: id})
-            if(jobExist) {
+            const friendExist = await Friend.findOne({_id, ownerId: id})
+            if(friendExist) {
                 continue
             }
             else {
@@ -47,6 +47,7 @@ const deleteFriend = (Friend, User) => async(ctx) => {
     const { id, token } = ctx.request.headers
     const userExist = await User.findOne({ _id: id, token })
     if (userExist) {
+        console.log(ctx.request.body)
         const { friend: {_id, ownerId}} = ctx.request.body
         await Friend.findOneAndRemove({_id , ownerId })
         ctx.status = 200

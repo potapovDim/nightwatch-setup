@@ -6,10 +6,15 @@
     <div v-else-if="currentView ==='friends'">
         <friendslist></friendslist>
     </div>
+    <div v-else-if="currentView ==='relatives'">
+        <relativeslist></relativeslist>
+    </div>
 
     <button type="button" v-on:click="changeView('jobs')">Jobs</button>
     <button type="button" v-on:click="changeView('friends')">Friends</button>
-    <button class="logout" v-on:click="clearStorageData">  
+    <button type="button" v-on:click="changeView('relatives')">Relatives</button>
+
+    <button class="logout" v-on:click="clearStorageData">
       <router-link v-on:click="clearStorageData" to="/">Log out</router-link>
     </button>
   </div>
@@ -19,6 +24,7 @@
   import { getData, postData, localStorageService } from '../../utils/index'
   import joblist from './jobs/job-list.vue'
   import friendslist from './friends/friend-list.vue'
+  import relativeslist from './relatives/relative-list.vue'
 
   export default {
     data() {
@@ -28,13 +34,13 @@
     },
     components: {
       joblist,
-      friendslist
+      friendslist,
+      relativeslist
     },
     mounted() {
     },
     methods: {
       clearStorageData(){
-        console.log('clear data')
         localStorageService.clearAll()
       },
       changeView(view) {

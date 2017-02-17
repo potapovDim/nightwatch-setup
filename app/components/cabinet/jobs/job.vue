@@ -18,8 +18,6 @@
 
 <script>
   export default {
-    mounted(){
-    },
     props: {
       index: Number,
       job: Object,

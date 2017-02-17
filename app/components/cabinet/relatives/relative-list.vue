@@ -1,61 +1,62 @@
 <template>
-    <div>
-        <div class="friend-list">
-            <template v-if="friends && friends.length" v-for="(friend, index) in friends">
-                <friend v-bind:friend="friend" v-bind:index="index" v-bind:deleteFriend="deleteFriend">
-                </friend>
+     <div>
+        <div class="job-list">
+            <template v-if="relatives && relatives.length" v-for="(job, index) in relatives">
+                <relative v-bind:relative="relative" v-bind:index="index" v-bind:deleteRelative=deleteRelative>
+                </relative>
             </template>
         </div>
-        <friendcreate v-bind:createFriend="createFriend"></friendcreate>
+        <relativecreate v-bind:createRelative="createRelative"></relativecreate>
     </div>
 </template>
 
 <script>
     import { postData, localStorageService, getData } from '../../../utils/'
-    import friend from './friend.vue'
-    import friendcreate from './friend-create.vue'
+    import relative from './relative.vue'
+    import relativecreate from './relative-create.vue'
 
     export default {
         data() {
             return {
-                friends: []
+                relatives: []
             }
         },
         components: {
-            friend,
-            friendcreate
+            relative,
+            relativecreate
+        },
+        mounted() {
+            this.getUserRelatives()
         },
         destroyed() {
             this.sendDataToServer()
         },
-        mounted() {
-            this.getUserFriends()
-        },
         methods: {
-            initFriends(status, {userFriends}) {
+            initRelatives(status, {userRelatives}) {
+                console.log('jobs', userRelatives)
                 status === 200
-                    ? this.friends = userFriends
+                    ? this.relatives = userRelatives
                     : null
             },
-            getUserFriends() {
-                const url = 'http://localhost:4422/friendslist'
+            getUserRelatives() {
+                const url = 'http://localhost:4422/relativelist'
                 const headers = {
                     id: localStorageService.get('id'),
                     token: localStorageService.get('token')
                 }
-                getData({ url, headers, callback: this.initFriends })
+                getData({ url, headers, callback: this.initJobs })
             },
-            createFriend(item) {
-                this.friends.push(item)
+            createRelative(item) {
+                this.relatives.push(item)
             },
             sendDataToServer() {
-                const url = 'http://localhost:4422/friendslist'
+                const url = 'http://localhost:4422/relativelist'
                 const headers = {
                     id: localStorageService.get('id'),
                     token: localStorageService.get('token')
                 }
                 const data = {
-                    friends: this.friends
+                    relatives: this.relatives
                 }
                 postData({ url, data, callback: this.asserResponse, headers })
 
@@ -63,33 +64,26 @@
             asserResponse(status, body) {
                 console.log(status, body)
             },
-            deleteFriend(index) {
-                if (this.friends[index]) {
-                    const url = 'http://localhost:4422/frienddelete'
+            deleteRelative(index) {
+                if (this.jobs[index]) {
+                    const url = 'http://localhost:4422/relativedelete'
                     const headers = {
                         id: localStorageService.get('id'),
                         token: localStorageService.get('token')
                     }
                     const data = {
-                        friend: this.friends[index]
+                        job: this.relatives[index]
                     }
                     postData({ url, data, callback: this.asserResponse, headers })
-                    this.friends.splice(index, 1)
+                    this.jobs.splice(index, 1)
                 } else {
                     return
                 }
             }
         }
     }
-
 </script>
 
-<style lang="css">
-     .friend-list {
-        overflow: scroll;
-        width: 300px;
-        height: 150px;
-        padding: 5px;
-        border: solid 1px black;
-    }
+<style>
+  
 </style>

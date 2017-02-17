@@ -10,16 +10,19 @@ const cors = require('koa-cors')
 const {createUserModel} = require('./models/User')
 const {createJobModel} = require('./models/Jobs')
 const {createFriendModel} = require('./models/Friend')
+const {createRelativeModel} = require('./models/Relative')
 
 const {registerUser, loginUser}  = require('./actions/user')
 const {addNewJobs, getJobList, deleteJob}  = require('./actions/jobs')
 const {addNewFriends, getFriendsList, deleteFriend}  = require('./actions/friends')
+const {addNewRelatives, getRelativesList, deleteRelative}  = require('./actions/relatives')
 
 const connectedMongoose = mongoose.connect('mongodb://127.0.0.1:27050')
 
 const User = createUserModel(connectedMongoose)
 const Job = createJobModel(connectedMongoose)
 const Friend = createFriendModel(connectedMongoose)
+const Relative = createRelativeModel(connectedMongoose)
 
 router.post('/', registerUser(User))
 

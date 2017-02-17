@@ -20,8 +20,6 @@
 
 <script>
   export default {
-    mounted(){
-    },
     props: {
       index: Number,
       friend: Object,
