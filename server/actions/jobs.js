@@ -4,7 +4,7 @@ const addNewJobs = (Job, User) => async(ctx) => {
     const { id, token } = ctx.request.headers
     const userExist = await User.findOne({ _id: id, token })
     if (userExist) {
-        const { jobs } = ctx.request.body
+        const { jobs, jobsForDell } = ctx.request.body
         console.log(jobs)
         for(const {_id ,jobAssigner, jobName, executor, deadline, jobDone} of jobs) {
             const jobExist = await Job.findOne({_id, ownerId: id})
@@ -47,7 +47,28 @@ const getJobList = (Job, User) => async(ctx) => {
     return ctx
 }
 
+const deleteJob = (Job, User) => async(ctx) => {
+    const { id, token } = ctx.request.headers
+    const userExist = await User.findOne({ _id: id, token })
+    if (userExist) {
+        const { job: {_id, ownerId}} = ctx.request.body
+        await Job.findOneAndRemove({_id , ownerId })
+        console.log('delete job')
+        ctx.status = 200
+        ctx.body = {
+            ok: 1
+        }
+    } else {
+        ctx.status = 404
+        ctx.body = {
+            message: 'unauthorized.user'
+        }
+    }
+    return ctx
+}
+
 module.exports = {
     addNewJobs,
-    getJobList
+    getJobList,
+    deleteJob
 }
