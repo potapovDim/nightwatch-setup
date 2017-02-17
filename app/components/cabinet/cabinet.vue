@@ -31,8 +31,6 @@
     components: {
       joblist,
     },
-    destroyed() {
-    },
     mounted() {
     },
     methods: {

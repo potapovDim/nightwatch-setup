@@ -25,11 +25,11 @@
             job,
             jobcreate
         },
-        props: {
-
-        },
         mounted() {
             this.getUserJobs()
+        },
+        destroyed() {
+            this.sendDataToServer()
         },
         methods: {
             initJobs(status, {userJobs}) {

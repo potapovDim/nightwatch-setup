@@ -25,8 +25,8 @@ router.post('/', registerUser(User))
 router.post('/login', loginUser(User))
 
 router.post('/jobslist', addNewJobs(Job, User))
-router.get('/jobslist', getJobList(Job, User))
 router.post('/jobdelete', deleteJob(Job, User))
+router.get('/jobslist', getJobList(Job, User))
 
 
 app.use(bodyParser())
