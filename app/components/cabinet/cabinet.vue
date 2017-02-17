@@ -14,8 +14,8 @@
 
     <button type="button" v-on:click="changeView('jobs')">Jobs</button>
     <button type="button" v-on:click="changeView('friends')">Friends</button>
-    <button class="logout">  
-      <router-link to="/">Log out</router-link>
+    <button class="logout" v-on:click="clearStorageData">  
+      <router-link v-on:click="clearStorageData" to="/">Log out</router-link>
     </button>
   </div>
 </template>
@@ -44,6 +44,10 @@
       this.getUserJobs()
     },
     methods: {
+      clearStorageData(){
+        console.log('clear data')
+        localStorageService.clearAll()
+      },
       changeView(view) {
         this.currentView !== view ? this.currentView = view : this.currentView = null
       },
@@ -73,8 +77,6 @@
           token: localStorageService.get('token')
         }
         const data = {
-          id: localStorageService.get('id'),
-          token: localStorageService.get('token'),
           jobs: this.jobs
         }
         console.log('send data', this.jobs)
