@@ -24,8 +24,8 @@ const asyncGetData = data => new Promise((resolve, reject) => http.get(data, res
 const asyncPostData = (data, options) => new Promise((resolve, reject) => {
   const req = http.request(options, (res) => {
     res.setEncoding('utf8')
-    res.on('data', (chunk) => {
-      console.log(`BODY!!!!!!!!!!!!!!!!!!!!!!!!!!!!: ${chunk}`);
+    res.on('data', (body) => {
+      resolve(JSON.parse(body))
     })
     res.on('end', () => {
       console.log('No more data in response.');
@@ -36,7 +36,6 @@ const asyncPostData = (data, options) => new Promise((resolve, reject) => {
   req.on('error', (e) => {
     console.log(`problem with request: ${e.message}`);
   });
-  resolve(true)
 })
 
 module.exports = {
