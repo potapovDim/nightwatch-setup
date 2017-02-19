@@ -9,7 +9,7 @@ const initialPage = {
   }
 
 }
-export default{
+export default {
     url:"http://localhost:8080", //base url to your website
     elements: {
       app: "#app" // css selector 
