@@ -38,7 +38,7 @@ const loginUser = (User) => async(ctx) => {
     ctx.body = {
       id,
       token,
-      1: 'ok',
+      message: 'ok',
       username: user.name
     }
   }
