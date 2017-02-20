@@ -1,12 +1,17 @@
-echo 'update webdriver'
-webdriver-manager update
-sleep 5
+if [ "$(ls -A ./node_modules/webdriver-manager/selenium)" ]; then
+      nc -z  127.0.0.1 4444 &&  kill `ps -ef|grep -i selenium| grep -v grep| awk '{print $2}'`
+else 
+  ./node_modules/.bin/webdriver-manager update
+  sleep 5
+fi
 
-(webdriver-manager start &)
+(./node_modules/.bin/webdriver-manager start &)
 while ! nc -z  127.0.0.1 4444; do sleep 1; done
 
-echo 'start webdriver'
-
-echo 'nightwatch run'
 ./node_modules/.bin/nightwatch
-echo 'done'
+
+
+./node_modules/.bin/webdriver-manager shutdown
+
+#sleep 3
+#./node_modules/.bin/webdriver-manager clean

@@ -1,12 +1,12 @@
 <template>
-    <div class="clock">
-        <button v-on:click="regiterNewUser" class="create-user-button">Register new user</button>
-        <button v-on:click="loginExistUser" class="create-user-button">Login </button>
-        <div class="registration-user">
-            <createuser v-if="registerUser"></createuser>
+    <div>
+        <div class="initial-buttons">
+            <button v-on:click="regiterNewUser" class="create-user-button btn-primary">Register new user</button>
+            <button v-on:click="loginExistUser" class="create-user-button btn-primary">Login </button>
         </div>
-        <div class="login-user">
-            <loginuser v-if="loginUser"></loginuser>
+        <div class="singup-singin">
+            <createuser v-if="registerUser"></createuser>
+            <loginuser v-else="loginUser"></loginuser>
         </div>
     </div>
 </template>
@@ -41,13 +41,6 @@
 </script>
 
 <style>
-    .clock-time-show {
-        color: sandybrown;
-        font-size: 80px;
-        line-height: 1.2em;
-        margin: 10px 0 10px;
-    }
-    
     .success {
         color: green;
         height: 30px;
@@ -58,10 +51,25 @@
         height: 30px;
     }
     
+    .initial-buttons {
+        margin: -50px 65% 0px;
+        display: flex;
+        position: absolute;
+    }
+    
     .create-user-button {
         background: orange;
-        border-radius: 4px;
+        border-radius: 10px;
         width: 200px;
         height: 30px;
+        font-size: small;
+        font-family: fantasy;
+    }
+    
+    .singup-singin {
+        margin: auto;
+        width: 50%;
+        padding-top: 35%;
+        padding-left: 35%
     }
 </style>
