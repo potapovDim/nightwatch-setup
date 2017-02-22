@@ -2,7 +2,7 @@
   <div>
     <div class="registration">
       <h1>Registration</h1>
-      <input v-on:change="createCaptcha" v-on:focus="dropState" placeholder="user name">
+      <input v-on:change="createCaptcha" v-on:focus="dropState" placeholder="user name" class="create-user-input">
       <div v-if="captcha"><span class="captcha-value">{{ captcha }} </span> enter captacha in captcha input</div>
       <input v-if="captcha" v-on:focus="removeCaptchaWarning" class="captcha-input" placeholder="captcha">
       <button v-on:click="registerNewUser" class="btn btn-primary btn-block btn-large">Create User</button>

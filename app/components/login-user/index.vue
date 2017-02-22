@@ -2,17 +2,20 @@
   <div class="login">
     <h1>Login</h1>
     <div>
-      <input type="text" name="u" placeholder="Username" />
-      <input type="password" name="p" placeholder="Password" />
-      <button type="button" class="btn btn-primary btn-block btn-large">Login</button>
+      <input type="text" name="u" placeholder="Username" class="user-name"/>
+      <input type="password" name="p" placeholder="Password" class="user-password"/>
+      <button v-on:click="login" type="button" class="btn btn-primary btn-block btn-large">Login</button>
+    </div>
+    <div v-if="loading" class="loading-absolute">
+      <loading ></loading>
     </div>
   </div>
 </template>
 
 <script>
   import { postData, imitateAsync, localStorageService } from '../../utils/'
-  import warning from './warning.vue'
-  import success from './success.vue'
+  import warning from '../helpers/warning.vue'
+  import success from '../helpers/success.vue'
   import loading from '../helpers/loading.vue'
   export default {
     components: {
@@ -24,7 +27,7 @@
       return {
         warning: false,
         success: false,
-        loading: false
+        loading: true
       }
     },
     methods: {
@@ -88,7 +91,17 @@
     letter-spacing: 1px;
     text-align: center;
   }
-  
+  .loading-absolute {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   input {
     width: 100%;
     margin-bottom: 10px;

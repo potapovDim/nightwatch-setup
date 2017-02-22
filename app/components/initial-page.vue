@@ -6,15 +6,17 @@
         </div>
         <div class="singup-singin">
             <createuser v-if="registerUser"></createuser>
-            <loginuser v-else="loginUser"></loginuser>
+            <loginuser v-if="loginUser"></loginuser>
+            <information v-if="!registerUser && !loginUser"></information>
         </div>
     </div>
 </template>
 
 <script>
-    import createuser from './create-user/index.vue'
+    import createuser from './registration/index.vue'
     import loginuser from './login-user/index.vue'
-
+    import information from './helpers/information.vue'
+    
     export default {
         data() {
             return {
@@ -22,7 +24,12 @@
                 loginUser: false
             }
         },
+        mounted(){
+            console.log(this.registerUser)
+            console.log(this.loginUser)
+        },
         components: {
+            information,
             loginuser,
             createuser
         },
