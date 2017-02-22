@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div>
+    <div class="registration">
+      <h1>Registration</h1>
       <input v-on:change="createCaptcha" v-on:focus="dropState" placeholder="user name">
       <div v-if="captcha"><span class="captcha-value">{{ captcha }} </span> enter captacha in captcha input</div>
-      <input v-if="captcha" v-on:focus="removeCaptchaWarning" placeholder="captcha">
-      <button v-on:click="registerNewUser">Create User</button>
+      <input v-if="captcha" v-on:focus="removeCaptchaWarning" class="captcha-input" placeholder="captcha">
+      <button v-on:click="registerNewUser" class="btn btn-primary btn-block btn-large">Create User</button>
       <div v-if="captcha_warning">
         Entered captcha value not equal present captcha
       </div>
@@ -86,5 +87,58 @@
 </script>
 
 <style>
-
+  @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .registration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .registration h1 {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 13px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+    -webkit-transition: box-shadow .5s ease;
+    -moz-transition: box-shadow .5s ease;
+    -o-transition: box-shadow .5s ease;
+    -ms-transition: box-shadow .5s ease;
+    transition: box-shadow .5s ease;
+  }
+  
+  input:focus {
+    box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
 </style>

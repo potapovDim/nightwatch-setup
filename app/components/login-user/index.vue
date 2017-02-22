@@ -1,12 +1,12 @@
 <template>
   <div class="login">
-	<h1>Login</h1>
-    <form method="post">
-    	<input type="text" name="u" placeholder="Username" required="required" />
-        <input type="password" name="p" placeholder="Password" required="required" />
-        <button type="submit" class="btn btn-primary btn-block btn-large">Login</button>
-    </form>
-</div>
+    <h1>Login</h1>
+    <div>
+      <input type="text" name="u" placeholder="Username" />
+      <input type="password" name="p" placeholder="Password" />
+      <button type="button" class="btn btn-primary btn-block btn-large">Login</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -59,7 +59,6 @@
 
 <style>
   @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-  
   * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
