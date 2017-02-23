@@ -1,18 +1,14 @@
 <template>
-  <div class="login-success"> 
-    Success login
+  <div class="success-message"> 
+    {{message}}
   </div>
 </template>
 
 <script>
   export default {
-    data(){
-      return {
-        
-      }
-    },
-    mounted(){},
-    methods: {}
+    props: {
+      message: String
+    }
   }
 </script>
 

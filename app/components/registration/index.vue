@@ -23,6 +23,9 @@
 <script>
   import { captchaGenerat, postData, imitateAsync } from '../../utils/'
   export default {
+    props: {
+      initSuccessRegistration: Function
+    },
     data() {
       return {
         username: null,
@@ -64,6 +67,7 @@
       showPassword() {
         this.success = true
         const refreshSuccess = () => {
+          this.initSuccessRegistration()
           this.success = false
         }
         imitateAsync(3000, null, refreshSuccess)

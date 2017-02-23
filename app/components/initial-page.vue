@@ -5,7 +5,7 @@
             <button v-on:click="loginExistUser" class="create-user-button btn-primary">Login </button>
         </div>
         <div class="singup-singin">
-            <createuser v-if="registerUser"></createuser>
+            <createuser v-if="registerUser" v-bind:initSuccessRegistration="initSuccessRegistration"></createuser>
             <loginuser v-if="loginUser"></loginuser>
             <information v-if="!registerUser && !loginUser"></information>
         </div>
@@ -34,6 +34,10 @@
             createuser
         },
         methods: {
+            initSuccessRegistration () {
+                this.loginUser = true
+                this.registerUser = false
+            },
             regiterNewUser() {
                 this.registerUser = !this.registerUser
                 this.loginUser = false

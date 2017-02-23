@@ -1,23 +1,19 @@
 <template>
-  <div class="login-success"> 
-    User name or password uncorrect
+  <div class="warning"> 
+    {{message}}
   </div>
 </template>
 
 <script>
   export default {
-    data(){
-      return {
-        
-      }
-    },
-    mounted(){},
-    methods: {}
+    props: {
+      message: String
+    }
   }
 </script>
 
 <style >
-  .login-success {
+  .warning {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 30px;
     height: 300px;

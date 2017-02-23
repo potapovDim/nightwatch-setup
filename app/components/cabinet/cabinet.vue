@@ -1,18 +1,19 @@
 <template>
   <div class="cabinet">
+    <div class="cabinet-controls">
+      <button type="button" v-on:click="changeView('jobs')">Jobs</button>
+      <button type="button" v-on:click="changeView('friends')">Friends</button>
+      <button type="button" v-on:click="changeView('relatives')">Relatives</button>
+    </div>
     <div v-if="currentView ==='jobs'" class="jobs">
       <joblist></joblist>
     </div>
     <div v-else-if="currentView ==='friends'">
-        <friendslist></friendslist>
+      <friendslist></friendslist>
     </div>
     <div v-else-if="currentView ==='relatives'">
-        <relativeslist></relativeslist>
+      <relativeslist></relativeslist>
     </div>
-
-    <button type="button" v-on:click="changeView('jobs')">Jobs</button>
-    <button type="button" v-on:click="changeView('friends')">Friends</button>
-    <button type="button" v-on:click="changeView('relatives')">Relatives</button>
 
     <button class="btn logout" v-on:click="clearStorageData">
       <router-link v-on:click="clearStorageData" to="/">Log out</router-link>
@@ -40,7 +41,7 @@
     mounted() {
     },
     methods: {
-      clearStorageData(){
+      clearStorageData() {
         localStorageService.clearAll()
       },
       changeView(view) {
@@ -52,12 +53,16 @@
 </script>
 
 <style>
-  
   .logout {
-    top: -98%;
+    top: 50px;
+    position: absolute;
     width: 100px;
     height: 30px;
-    margin-left: 90%; 
+    margin-left: 90%;
     background: rgba(250, 255, 255, 0.5);
+  }
+  .cabinet-controls {
+    margin-bottom: -80%;
+    position: absolute;
   }
 </style>
