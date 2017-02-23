@@ -6,9 +6,13 @@
   "scripts": {
     "dev": "webpack-dev-server --open --inline --hot --quiet --port 8082",
     "api": "nodemon --harmony ./server/server.js --port 4422",
-    "api:test": "NODE_ENV=test nodemon --harmony ./server/server.js --port 4422",
+    "api:test": "nodemon --harmony ./server/server.js --port 4422",
     "test:e2e": "./test.sh",
-    "test:api": "NODE_ENV=test mocha --harmony --trace-deprecation --timeout 50000 $(find ./apitests/ -path '*.spec.*')"
+    "test:api": "NODE_ENV=test mocha --harmony --trace-deprecation --timeout 50000 $(find ./apitests/ -path '*.spec.*')",
+
+    "update-webdriver": "node_modules\\.bin\\webdriver-manager update",
+    "start-webdriver": "node_modules\\.bin\\webdriver-manager start",
+    "nightwatch": "node_modules\\.bin\\nightwatch"
   },
   "author": "Potapov Dmytro",
   "license": "MIT",
