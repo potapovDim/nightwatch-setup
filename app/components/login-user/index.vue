@@ -27,7 +27,7 @@
       return {
         warning: false,
         success: false,
-        loading: true
+        loading: false
       }
     },
     methods: {

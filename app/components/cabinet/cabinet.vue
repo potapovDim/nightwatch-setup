@@ -14,7 +14,7 @@
     <button type="button" v-on:click="changeView('friends')">Friends</button>
     <button type="button" v-on:click="changeView('relatives')">Relatives</button>
 
-    <button class="logout" v-on:click="clearStorageData">
+    <button class="btn logout" v-on:click="clearStorageData">
       <router-link v-on:click="clearStorageData" to="/">Log out</router-link>
     </button>
   </div>
@@ -57,6 +57,7 @@
     top: -98%;
     width: 100px;
     height: 30px;
-    background: rgba(250, 100, 100, 0.5);
+    margin-left: 90%; 
+    background: rgba(250, 255, 255, 0.5);
   }
 </style>
