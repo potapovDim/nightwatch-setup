@@ -16,7 +16,7 @@ const disableTransition = (selector) => {
    document.getElementsByTagName(selector)[0].appendChild(style) //disable transition and css effects 
 }
 
-export function command () {
+ exports.command = function  () {
   return this.execute(disableTransition,['head']) //execute script 
 }
 
