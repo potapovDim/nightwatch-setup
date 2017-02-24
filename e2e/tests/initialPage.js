@@ -1,5 +1,3 @@
-//var InfoPage = require('./classes/InfoPage');
-
 module.exports =  {
  
      'execute disable transition': (client) => {
@@ -35,7 +33,7 @@ module.exports =  {
         
          loginPage.authorization('qwe', 'test')
          browser.pause(1000)
-         browser.assert.urlContains('http://localhost:8080/cabinet')
+         browser.assert.urlContains('http://localhost:8082/cabinet')
          browser.end()
      },
 
@@ -48,7 +46,7 @@ module.exports =  {
         
          loginPage.authorization('qwe1', 'test')
          browser.pause(1000)
-         browser.assert.urlEquals('http://localhost:8080/')
+         browser.assert.urlEquals('http://localhost:8082/')
          browser.end()
      },
 
@@ -92,6 +90,7 @@ module.exports =  {
                   
          browser.end()
      },
+
      'delete jobs' : (browser) => {
          const cabinetPage = browser.page.cabinetPage();
          const loginPage = browser.page.loginPage();
@@ -104,12 +103,11 @@ module.exports =  {
          cabinetPage.jobButtonClick()
 
          cabinetPage.createNewJob('qqq', 'aaa', 'zzz')
-         //cabinetPage.jobList(1)
 
          cabinetPage.isPresentJobDeleteBtn()
-         //cabinetPage.deleteJob()
-//??
+
          browser.moveToElement(".job:first-child", 10, 10)
+         browser.pause(1000)
          cabinetPage.deleteJob();
 
          cabinetPage.jobList(0)
@@ -135,10 +133,63 @@ module.exports =  {
          browser.pause(1000)
 
          cabinetPage.jobButtonClick()
-         cabinetPage.jobList(2)
+         cabinetPage.jobList(0)
          browser.end()
     },
-    /*'add friends' : (browser) => {
+    
+    'add friends' : (browser) => {
+         const friendsModule = browser.page.friendsModule();
+         const cabinetPage = browser.page.cabinetPage();
+         const loginPage = browser.page.loginPage();
+         const infoPage = browser.page.infoPage();
+         
+         infoPage.navigate()
+         infoPage.goToLogin()
+         loginPage.authorization('name2', 'test')
+         browser.pause(1000)
+        
+         friendsModule.friendsButtonClick()
+         
+         friendsModule.isPresentFriendsField()
+         friendsModule.isPresentFriendName()
+         friendsModule.isPresentFriendLastname()
+         friendsModule.isPresentFriendPhone()
+         friendsModule.isPresentFriendSocial()
+         friendsModule.isPresentFriendAddBtn()
+
+         friendsModule.addNewFriend('name', 'lastName', '123-123-132', 'social.com')
+
+         friendsModule.friendList(1)
+                  
+         browser.end()
+     },
+     'delete friend' : (browser) => {
+         const friendsModule = browser.page.friendsModule();
+         const cabinetPage = browser.page.cabinetPage();
+         const loginPage = browser.page.loginPage();
+         const infoPage = browser.page.infoPage();
+         
+         infoPage.navigate()
+         infoPage.goToLogin()
+         loginPage.authorization('name2', 'test')
+         browser.pause(1000)
+
+         friendsModule.friendsButtonClick()
+
+         friendsModule.addNewFriend('name', 'lastName', '123-123-132', 'social.com')
+
+         friendsModule.isPresentFriendDeleteBtn()
+
+         browser.moveToElement(".friend:first-child", 10, 10)
+         browser.pause(1000)
+         friendsModule.deleteFriend();
+
+         friendsModule.friendList(0)
+         browser.pause(1000)
+         browser.end()
+     },
+     'should not add letters in phone' : (browser) => {
+         const friendsModule = browser.page.friendsModule();
          const cabinetPage = browser.page.cabinetPage();
          const loginPage = browser.page.loginPage();
          const infoPage = browser.page.infoPage();
@@ -148,17 +199,40 @@ module.exports =  {
          loginPage.authorization('qwe', 'test')
          browser.pause(1000)
         
-         cabinetPage.jobButtonClick()
-         cabinetPage.isPresentJobField()
-         cabinetPage.isPresentJobName()
-         cabinetPage.isPresentJobExecutor()
-         cabinetPage.isPresentJobDeadline()
-         cabinetPage.isPresentJobCreateBtn()
+         friendsModule.friendsButtonClick()
+         
+         friendsModule.isPresentFriendsField()
+         friendsModule.isPresentFriendName()
+         friendsModule.isPresentFriendLastname()
+         friendsModule.isPresentFriendPhone()
+         friendsModule.isPresentFriendSocial()
+         friendsModule.isPresentFriendAddBtn()
 
-         cabinetPage.createNewJob('qqq', 'aaa', 'zzz')
+         friendsModule.addNewFriend('name', 'lastName', 'blabla', 'social.com')
 
-         cabinetPage.jobList(1)
+         friendsModule.friendList(0)
                   
          browser.end()
-     },*/
- }
+     },
+    
+     'should create new user and login' : (browser) => {
+         const userRegisterModule = browser.page.userRegisterModule();
+         const infoPage = browser.page.infoPage();
+         const loginPage = browser.page.loginPage();
+         
+         userRegisterModule.navigate()
+         userRegisterModule.goToRegistration()
+
+         userRegisterModule.isPresentName()
+         userRegisterModule.isPresentBtnCreate()
+         userRegisterModule.registration("name2")
+         browser.pause(1000)
+
+         infoPage.goToLogin()
+         loginPage.authorization('name2', 'test')
+         browser.pause(1000)
+         browser.assert.urlContains('http://localhost:8082/cabinet')         
+         browser.end()
+     },
+
+}

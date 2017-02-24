@@ -34,7 +34,6 @@ const cabinetPage = {
     return this.waitForElementPresent('@jobCreateBtn')
   },
   jobList(n){
-       //return this.elemCount('css selector', '@jobList', 1)
        const jobL = this.elements.jobList.selector
        return this.elemCount('css selector', jobL, n)
   }, 
@@ -60,7 +59,7 @@ const cabinetPage = {
 }
 
 module.exports = {
-    url:"http://localhost:8080/cabinet", //base url to your website
+    url:"http://localhost:8082/cabinet", //base url to your website
     elements: {
       jobsBtn: " .cabinet> button:nth-child(1)",
       jobField: ".job-list",
