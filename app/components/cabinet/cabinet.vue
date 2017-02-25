@@ -1,11 +1,11 @@
 <template>
   <div class="cabinet">
     <div class="cabinet-controls">
-      <button type="button" v-on:click="changeView('jobs')">Jobs</button>
-      <button type="button" v-on:click="changeView('friends')">Friends</button>
-      <button type="button" v-on:click="changeView('relatives')">Relatives</button>
+      <button type="button" class="btn cabinet-btn" v-on:click="changeView('jobs')">Jobs</button>
+      <button type="button" class="btn cabinet-btn" v-on:click="changeView('friends')">Friends</button>
+      <button type="button" class="btn cabinet-btn" v-on:click="changeView('relatives')">Relatives</button>
     </div>
-    <div v-if="currentView ==='jobs'" class="jobs">
+    <div v-if="currentView ==='jobs'">
       <joblist></joblist>
     </div>
     <div v-else-if="currentView ==='friends'">
@@ -52,17 +52,24 @@
 
 </script>
 
-<style>
+<style lang="css">
   .logout {
     top: 50px;
     position: absolute;
     width: 100px;
     height: 30px;
     margin-left: 90%;
-    background: rgba(250, 255, 255, 0.5);
+    background: red;
   }
   .cabinet-controls {
-    margin-bottom: -80%;
+    top: 50px;
+    margin-left: 50%;
     position: absolute;
+  }
+  .cabinet-btn {
+    width: 100px;
+  }
+  .cabinet-btn:hover {
+    background: linear-gradient(to right, slategrey, blueviolet);
   }
 </style>

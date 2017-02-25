@@ -8,7 +8,7 @@
     <input type="text" id="relative-phone" placeholder="relative phone" v-model="relative.phone">
     <label for="relative-address">relative social</label>
     <input type="text" id="relative-address" placeholder="relative address" v-model="relative.address">
-    <button v-on:click="click">
+    <button v-on:click="click()">
       Create new relative
     </button>
   </div>
@@ -31,6 +31,7 @@ export default {
     },
     methods: {
       click(){
+        console.log("!!!!!!!!!!!!!!!click")
         const {name, lastname, phone, address} = this.relative
         this.createRelative({name, lastname, phone, address})
       }

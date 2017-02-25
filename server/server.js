@@ -34,8 +34,11 @@ router.post('/jobdelete', deleteJob(Job, User))
 
 router.post('/friendslist', addNewFriends(Friend, User))
 router.get('/friendslist', getFriendsList(Friend, User))
-router.post('/frineddelete', deleteFriend(Friend, User))
+router.post('/frienddelete', deleteFriend(Friend, User))
 
+router.post('/relativelist', addNewRelatives(Relative, User))
+router.get('/relativelist', getRelativesList(Relative, User))
+router.post('/relativedelete', deleteRelative(Relative, User))
 
 app.use(bodyParser())
 app.use(cors())

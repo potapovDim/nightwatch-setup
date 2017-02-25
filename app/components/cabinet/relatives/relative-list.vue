@@ -1,7 +1,7 @@
 <template>
      <div>
         <div class="job-list">
-            <template v-if="relatives && relatives.length" v-for="(job, index) in relatives">
+            <template v-if="relatives && relatives.length" v-for="(relative, index) in relatives">
                 <relative v-bind:relative="relative" v-bind:index="index" v-bind:deleteRelative=deleteRelative>
                 </relative>
             </template>
@@ -65,17 +65,17 @@
                 console.log(status, body)
             },
             deleteRelative(index) {
-                if (this.jobs[index]) {
+                if (this.relatives[index]) {
                     const url = 'http://localhost:4422/relativedelete'
                     const headers = {
                         id: localStorageService.get('id'),
                         token: localStorageService.get('token')
                     }
                     const data = {
-                        job: this.relatives[index]
+                        relative: this.relatives[index]
                     }
                     postData({ url, data, callback: this.asserResponse, headers })
-                    this.jobs.splice(index, 1)
+                    this.relatives.splice(index, 1)
                 } else {
                     return
                 }
