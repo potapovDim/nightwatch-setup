@@ -6,7 +6,7 @@
     <input type="text" id="job-executor" placeholder="job executor" v-model="job.executor">
     <label for="job-deadline">Job deadline</label>
     <input type="text" id="job-deadline" placeholder="job deadline" v-model="job.deadline">
-    <button class="btn create" v-on:click="cleateNewJob">
+    <button class="btn btn-large create" v-on:click="cleateNewJob">
       Create new job
     </button>
   </div>

@@ -8,7 +8,7 @@
     <input type="text" id="friend-phone" placeholder="friend phone" v-model="friend.phone">
     <label for="friend-social">friend social</label>
     <input type="text" id="friend-social" placeholder="friend social" v-model="friend.social">
-    <button v-on:click="click">
+    <button class="btn btn-large" v-on:click="click">
       Create new friend
     </button>
   </div>
