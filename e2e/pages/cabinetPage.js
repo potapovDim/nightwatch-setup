@@ -75,5 +75,5 @@ module.exports = {
       relativesBtn: ".cabinet> button:nth-child(3)" ,
       logOutBtn: ".logout"
     },
-    commands: [cabinetPage] //commands for this PO
+    commands: [cabinetPage]
 }

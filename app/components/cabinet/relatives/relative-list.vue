@@ -33,7 +33,6 @@
         },
         methods: {
             initRelatives(status, {userRelatives}) {
-                console.log('jobs', userRelatives)
                 status === 200
                     ? this.relatives = userRelatives
                     : null
@@ -44,7 +43,7 @@
                     id: localStorageService.get('id'),
                     token: localStorageService.get('token')
                 }
-                getData({ url, headers, callback: this.initJobs })
+                getData({ url, headers, callback: this.initRelatives })
             },
             createRelative(item) {
                 this.relatives.push(item)
