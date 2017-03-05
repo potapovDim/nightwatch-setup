@@ -30,11 +30,5 @@
 </script>
 
 <style lang="css">
-  .friend-controlers {
-    display: none;
-  }
   
-  .friend:hover .friend-controlers {
-    display: block;
-  }
 </style>

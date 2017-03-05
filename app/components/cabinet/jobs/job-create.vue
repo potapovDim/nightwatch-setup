@@ -36,8 +36,5 @@
 </script>
 
 <style lang="css">
-  .create {
-    color: green;
-    background: grey
-  }
+ 
 </style>

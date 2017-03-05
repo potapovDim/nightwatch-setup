@@ -88,11 +88,4 @@
 </script>
 
 <style lang="css">
-    .job-list {
-        overflow: scroll;
-        width: 300px;
-        height: 150px;
-        padding: 5px;
-        border: solid 1px black;
-    }
 </style>

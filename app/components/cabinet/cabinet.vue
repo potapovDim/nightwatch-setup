@@ -53,23 +53,5 @@
 </script>
 
 <style lang="css">
-  .logout {
-    top: 50px;
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    margin-left: 90%;
-    background: red;
-  }
-  .cabinet-controls {
-    top: 50px;
-    margin-left: 50%;
-    position: absolute;
-  }
-  .cabinet-btn {
-    width: 100px;
-  }
-  .cabinet-btn:hover {
-    background: linear-gradient(to right, slategrey, blueviolet);
-  }
+ 
 </style>
