@@ -5,3 +5,4 @@ reports
 .vscode
 e2e/tests_output
 npm-debug.log
+yarn.lock

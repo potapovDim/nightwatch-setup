@@ -35,6 +35,7 @@
         const name = document.getElementsByClassName('user-name')[0].value
         const password = document.getElementsByClassName('user-password')[0].value
         if (name && password) {
+          this.loading = true
           const url = 'http://localhost:4422/login'
           const data = { name, password }
           postData({ url, data, callback: this.initResponseData })
@@ -49,11 +50,14 @@
         localStorageService.set('id', id)
         imitateAsync(500, null, this.redirectToCabinet)
       },
+      failLogin() {
+        this.loading = false
+        this.warning = true
+      },
       initResponseData(status, data) {
         status === 404
-          ? this.warning = true
+          ? imitateAsync(500, null, this.failLogin)
           : this.setUserData(data.token, data.id)
-        this.loading = true
       }
     }
   }
