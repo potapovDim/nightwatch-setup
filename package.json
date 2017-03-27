@@ -9,7 +9,6 @@
     "api:test": "nodemon --harmony ./server/server.js --port 4422",
     "test:e2e": "./test.sh",
     "test:api": "NODE_ENV=test mocha --harmony --trace-deprecation --timeout 50000 $(find ./apitests/ -path '*.spec.*')",
-
     "update-webdriver": "node_modules\\.bin\\webdriver-manager update",
     "start-webdriver": "node_modules\\.bin\\webdriver-manager start",
     "nightwatch": "node_modules\\.bin\\nightwatch"
@@ -30,14 +29,13 @@
     "nightwatch": "^0.9.12",
     "nodemon": "^1.11.0",
     "operadriver": "^0.2.2",
-    "rxjs": "^5.1.0",
-    "vue-loader": "^10.0.2",
-    "vue-template-compiler": "^2.1.4",
     "webdriver-manager": "^11.1.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.1.0-beta.12"
   },
   "dependencies": {
+    "dns-sync": "^0.1.3",
+    "jsonwebtoken": "^7.3.0",
     "koa": "^2.0.0-alpha.7",
     "koa-bodyparser": "^2.3.0",
     "koa-cors": "0.0.16",
@@ -45,7 +43,10 @@
     "koa2": "^2.0.0-alpha.7",
     "mongoose": "^4.8.1",
     "rxjs": "^5.1.1",
+    "then-redis": "^2.0.1",
     "vue": "^2.1.10",
-    "vue-router": "^2.2.0"
+    "vue-loader": "^10.0.2",
+    "vue-router": "^2.2.0",
+    "vue-template-compiler": "^2.1.4"
   }
 }
