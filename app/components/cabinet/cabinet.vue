@@ -18,6 +18,9 @@
     <button class="btn logout" v-on:click="clearStorageData">
       <router-link v-on:click="clearStorageData" to="/">Log out</router-link>
     </button>
+    <button class="">
+      <router-link v-on:click="" to="/editor">Go to editro</router-link>
+    </button>
   </div>
 </template>
 
