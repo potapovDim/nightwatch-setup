@@ -3,8 +3,10 @@ import App from './app.vue'
 import Cabinet from './components/cabinet/cabinet.vue'
 import InitialPage from './components/initial-page.vue'
 import VueRouter from 'vue-router'
+import {VueDnd} from './utils/dnd'
 
 Vue.use(VueRouter)
+Vue.use(VueDnd)
 
 const router = new VueRouter({
   mode: 'history',

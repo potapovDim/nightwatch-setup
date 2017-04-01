@@ -1,4 +1,4 @@
-function VueDnd() {
+export function VueDnd() {
 
   const DragAndDrop = {}
 
