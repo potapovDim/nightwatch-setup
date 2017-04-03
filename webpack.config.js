@@ -23,7 +23,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                query: {
+                    presets: [['es2015', { 'modules': false }], 'stage-0'],
+                    plugins: ['babel-plugin-transform-decorators-legacy', 'transform-async-to-generator'],
+                    cacheDirectory: true
+                }
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
