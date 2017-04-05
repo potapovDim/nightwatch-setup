@@ -3,7 +3,13 @@
   <button @click="addBlock">Add new block</button>
     editor
     <div id="app">
-      <div v-for="task in tasks" draggable="true" v-on:drag="(e) => dragging(task, e)" v-on:dragstart="(e) => drag(task, e)">Drag this...{{task.name}}</div>
+      <div v-for="task in tasks" 
+          draggable="true"
+          v-on:drag="(e) => dragging(task, e)"
+          v-on:dragstart="(e) => drag(task, e)"
+          v-on:dragend="logger">
+              Drag this...{{task.name}}
+          </div>
     </div>
     <div>
       <block v-for="block in blocks"></block>      
@@ -55,7 +61,8 @@
         console.log(arg)
       },
       dragging(taks, e) {
-        EventEmitter.emitEvent(DRAG_START, e)
+        console.log(taks, e)
+        EventEmitter.emitEvent(DRAG_START, taks)
         e.target.style = "box-shadow: 0 0 10px rgba(0,0,0,0.5);"
         //console.log('dragging')
       },
