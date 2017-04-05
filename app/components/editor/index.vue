@@ -1,13 +1,12 @@
 <template>
   <div class="editor">
+  <button @click="addBlock">Add new block</button>
     editor
     <div id="app">
       <div v-for="task in tasks" draggable="true" v-on:drag="(e) => dragging(task, e)" v-on:dragstart="(e) => drag(task, e)">Drag this...{{task.name}}</div>
-      <div v-on:dragover.prevent v-on:drop="drop" class="droppable">
-
-        Drop here...
-      </div>
-      <placeholder></placeholder>
+    </div>
+    <div>
+      <block v-for="block in blocks"></block>      
     </div>
     <button class="btn logout">
       <router-link  to="/cabinet">Log out</router-link>
@@ -18,10 +17,10 @@
 <script>
   import { EventEmitter } from '../../service/rx/index.js'
   import { DRAG_START, DRAG_END } from '../../service/rx/events.js'
-  import placeholder from './placeholder.vue'
+  import block from './block.vue'
   export default {
     components: {
-      placeholder
+      block
     },
     mounted() {
       // EventEmitter.subscribeOnEvent(DRAG_START,(arg) => {
@@ -30,6 +29,12 @@
     },
     data() {
       return {
+        blocks:[
+          {
+            id: 1,
+            content: []
+          }
+        ],
         tasks: [{
           name: 'test1',
           id: 1
@@ -40,13 +45,23 @@
       }
     },
     methods: {
+      addBlock(){
+        const newBlock = {
+          id: this.blocks.length + 1
+        }
+        this.blocks.push()
+      },
+      logger(arg) {
+        console.log(arg)
+      },
       dragging(taks, e) {
         EventEmitter.emitEvent(DRAG_START, e)
+        e.target.style = "box-shadow: 0 0 10px rgba(0,0,0,0.5);"
         //console.log('dragging')
       },
       drop(task, e) {
         EventEmitter.emitEvent(DRAG_END, task)
-        console.log('Looks like you dropped something!', e);
+        //console.log('Looks like you dropped something!', task, '!!');
       },
       drag: function (taks, e) {
       }
@@ -55,6 +70,9 @@
 </script>
 
 <style lang="css">
+  .dropzones{
+    display: flex;
+  }
   .droppable{
     width: 400px;
     height: 400px;
