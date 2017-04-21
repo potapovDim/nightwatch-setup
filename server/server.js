@@ -1,5 +1,5 @@
 const {port} = require('minimist')(process.argv.slice(2))
-const Koa = require('koa')
+const Koa = require('koa2')
 const app = new Koa()
 const router = require('koa-router')()
 const logger = require('koa-logger')
