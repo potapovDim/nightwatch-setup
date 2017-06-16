@@ -21,6 +21,10 @@ module.exports = {
                 loader: 'vue-loader'
             },
             {
+                test: /\.s[a|c]ss$/,
+                loader: 'style!css!sass'
+            },
+            {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
@@ -38,5 +42,10 @@ module.exports = {
                 }
             }
         ]
+    },
+    vue: {
+    loaders: {
+      scss: 'style!css!sass'
     }
+  }
 }
