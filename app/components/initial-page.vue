@@ -25,8 +25,7 @@
             }
         },
         mounted(){
-            console.log(this.registerUser)
-            console.log(this.loginUser)
+           
         },
         components: {
             information,

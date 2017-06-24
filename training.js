@@ -35,23 +35,31 @@ const printListRecReverse = (list) => {
 //printListRecReverse(list)
 
 
+const jwt = require('jsonwebtoken')
 
-const promiseResolver = (arg, done) => {
-  let a
-  Promise.resolve(arg).then(ar =>{ 
-    a = ar
-    console.log(a)})
+const token = jwt.sign({username: 'test', password: 'test'}, 'secret')
+console.log(token)
+const userData = jwt.decode(token)
+console.log(userData)
+
+// const promiseResolver = (arg, done) => {
+//   let a
+//   Promise.resolve(arg).then(ar =>{ 
+//     a = ar
+//     console.log(a)})
   
-  while(!a){
-   console.log('wait')
-   setTimeout(() => {
-    done()
-   }, 1123)
-  }
-  if(a){
-    console.log('in return')
-    return a
-  }
-}
-const x = promiseResolver(1, () => {})
-console.log(x)
+//   while(!a){
+//    console.log('wait')
+//    setTimeout(() => {
+//     done()
+//    }, 1123)
+//   }
+//   if(a){
+//     console.log('in return')
+//     return a
+//   }
+// }
+// const x = promiseResolver(1, () => {})
+// console.log(x)
+
+// 86400000 мс - один день
