@@ -20,6 +20,25 @@ const registerUser = (User) => async(ctx) => {
   return ctx
 }
 
+const whoAmI = (User) => async(ctx) => {
+  const {token} = ctx.request.body
+  const user = await User.findOne({token})
+  if(!user) {
+    ctx.status = 404
+    ctx.body = {
+      message: 'token.expired'
+    }
+  }
+  else {
+    ctx.status = 200
+    ctx.body = {
+      token,
+      message: 'ok',
+      username: user.name
+    }
+  }
+  return ctx
+} 
 
 const loginUser = (User) => async(ctx) => {
   const {name, password} = ctx.request.body
@@ -47,5 +66,6 @@ const loginUser = (User) => async(ctx) => {
 
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
+  whoAmI
 }

@@ -1,6 +1,6 @@
 const router = require('koa-router')()
 
-const {registerUser, loginUser}  = require('./actions/user')
+const {registerUser, loginUser, whoAmI}  = require('./actions/user')
 const {addNewJobs, getJobList, deleteJob}  = require('./actions/jobs')
 const {addNewFriends, getFriendsList, deleteFriend}  = require('./actions/friends')
 const {addNewRelatives, getRelativesList, deleteRelative}  = require('./actions/relatives')
@@ -8,6 +8,7 @@ const {addNewRelatives, getRelativesList, deleteRelative}  = require('./actions/
 const {User, Job, Friend, Relative} = require('./models')
 
 router.post('/', registerUser(User))
+router.post('/whoami', whoAmI(User))
 router.post('/login', loginUser(User))
 router.post('/jobslist', addNewJobs(Job, User))
 router.post('/jobdelete', deleteJob(Job, User))

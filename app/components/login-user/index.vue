@@ -2,8 +2,8 @@
   <div class="login">
     <h1>Login</h1>
     <div>
-      <input type="text" name="u" placeholder="Username" class="user-name"/>
-      <input type="password" name="p" placeholder="Password" class="user-password"/>
+      <input type="text" name="u" placeholder="Username" class="user-name"></input>
+      <input type="password" name="p" placeholder="Password" class="user-password"></input>
       <button v-on:click="login" type="button" class="btn btn-primary btn-block btn-large">Login</button>
     </div>
     <div v-if="loading" class="loading-absolute">
@@ -17,6 +17,7 @@
   import warning from '../helpers/warning.vue'
   import success from '../helpers/success.vue'
   import loading from '../helpers/loading.vue'
+
   export default {
     components: {
       warning,
