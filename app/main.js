@@ -1,11 +1,16 @@
 import Vue from 'vue'
-import App from './app.vue'
-import Cabinet from './components/cabinet/cabinet.vue'
-import Editor from './components/editor/index.vue'
-import InitialPage from './components/initial-page.vue'
 import VueRouter from 'vue-router'
 
-import {VueDnd} from './utils/dnd'
+import { reduxStorePlugin } from 'redux-vue';
+import { store } from './reducers/root'
+
+import Editor from './components/editor/index.vue'
+import InitialPage from './components/initial-page.vue'
+import Cabinet from './components/cabinet/cabinet.vue'
+import App from './app.vue'
+
+
+import { VueDnd } from './utils/dnd'
 
 Vue.use(VueRouter)
 Vue.use(VueDnd)
@@ -17,14 +22,15 @@ const router = new VueRouter({
     {
       path: '/', component: App,
       children: [
-        { path: '', component: InitialPage },
-        { path: 'cabinet', component: Cabinet },
-        { path: 'editor', component: Editor }
+        { path: '', component: InitialPage }
       ]
-    }
+    },
+    { path: '/cabinet', component: Cabinet },
+    { path: '/editor', component: Editor }
   ]
 })
 new Vue({
+  store,
   router,
   template: `
     <div id="app">

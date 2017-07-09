@@ -8,8 +8,7 @@ export default (state = {}, {type, ...rest}) => {
   switch (type) {
     case ADD_RELATIVE:
       return {...state}
-  
     default:
-      break;
+      return state
   }
 }
