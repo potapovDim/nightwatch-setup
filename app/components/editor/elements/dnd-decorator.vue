@@ -11,22 +11,16 @@
 
 <script>
 export default {
-  props: {
-    childComponent: Node
-  },
-  components: {
-
-  },
   mounted() {
     // EventEmitter.subscribeOnEvent(DRAG_START, this.logger)
     // EventEmitter.subscribeOnEvent(DRAG_END, this.endDrag)
   },
   methods: {
     logger(arg) {
-      console.log(arg)
+      //console.log(arg)
     },
     dragging( e) {
-      console.log( e)
+      //console.log( e)
       //EventEmitter.emitEvent(DRAG_START, taks)
       e.target.style = "box-shadow: 0 0 10px rgba(0,0,0,0.5);"
       //console.log('dragging')

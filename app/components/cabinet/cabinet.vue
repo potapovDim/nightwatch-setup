@@ -29,8 +29,10 @@
   import joblist from './jobs/job-list.vue'
   import friendslist from './friends/friend-list.vue'
   import relativeslist from './relatives/relative-list.vue'
+  import {store} from '../../reducers/root'
 
   export default {
+    store: store,
     data() {
       return {
         currentView: null

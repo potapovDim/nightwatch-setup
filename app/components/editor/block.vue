@@ -16,8 +16,8 @@
       EventEmitter.subscribeOnEvent(DRAG_END, this.endDrag)
     },
     methods: {
-      endDrag(arg) {
-        console.log('end DRAG',arg)
+      endDrag(ev) {
+        console.log('end DRAG', ev)
       },
       logger(e) {
       }

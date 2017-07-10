@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import { reduxStorePlugin } from 'redux-vue';
+
 import { store } from './reducers/root'
 
 import Editor from './components/editor/index.vue'
@@ -11,7 +11,6 @@ import App from './app.vue'
 
 
 import { VueDnd } from './utils/dnd'
-
 Vue.use(VueRouter)
 Vue.use(VueDnd)
 
@@ -30,7 +29,6 @@ const router = new VueRouter({
   ]
 })
 new Vue({
-  store,
   router,
   template: `
     <div id="app">
