@@ -20,8 +20,6 @@
         console.log('end DRAG',arg)
       },
       logger(e) {
-        // const element = document.querySelector('.drag-plaseholder')
-        // console.log(e.clientX, e.clientY)
       }
     }
   }

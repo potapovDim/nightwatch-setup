@@ -26,7 +26,6 @@
       deleteFriend: Function
     }
   }
-
 </script>
 
 <style lang="css">
