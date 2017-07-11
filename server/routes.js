@@ -8,7 +8,7 @@ const {addNewRelatives, getRelativesList, deleteRelative}  = require('./actions/
 const {User, Job, Friend, Relative} = require('./models')
 
 router.post('/', registerUser(User))
-router.post('/whoami', whoAmI(User))
+router.get('/whoami', whoAmI(User))
 router.post('/login', loginUser(User))
 router.post('/jobslist', addNewJobs(Job, User))
 router.post('/jobdelete', deleteJob(Job, User))

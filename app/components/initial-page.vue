@@ -29,13 +29,6 @@ export default {
     mounted() {
         const token = localStorageService.get('token')
         const url = 'http://localhost:4422/whoami'
-        console.log(token)
-        // const data = {token}
-        // postData({
-        //    url, data, callback: (status, data) => {
-        //     status == 200 ? this.$router.push('/cabinet') : null
-        //    }
-        // })
     },
     created() {
         console.log('chreated')

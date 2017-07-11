@@ -5,6 +5,7 @@
         </div>
         <router-view></router-view>
         <div class="footer">
+            <button class="clickerStore">clickStore</button>
             <div>Some footer information</div>
         </div>
     </div>
@@ -20,26 +21,37 @@ export default {
         }
     },
     render() {
+
         console.log('render app')
     },
     created() {
-        this.stateStore = store.getState()
+        this.storeState = store.getState().relatives
         console.log('created app')
     },
     mounted() {
         console.log('mount app')
-        console.log(this.stateStore)
+        store.subscribe(() => {
+            this.render()
+        })
         this.startTime()
+        console.log(this.storeState)
     },
     methods: {
+        click: function (e) {
+            e.preventDefault();
+
+            store.dispatch(Actions.Todos.addTodo(this.text));
+
+            this.text = '';
+        },
         startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
+            let today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
             m = this.checkTime(m);
             s = this.checkTime(s);
-
+            
             this.time = h + ":" + m + ":" + s;
             const t = setTimeout(this.startTime, 500);
         },

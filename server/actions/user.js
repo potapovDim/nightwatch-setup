@@ -21,7 +21,7 @@ const registerUser = (User) => async(ctx) => {
 }
 
 const whoAmI = (User) => async(ctx) => {
-  const {token} = ctx.request.body
+  const {token} = ctx.request.headers
   const user = await User.findOne({token})
   if(!user) {
     ctx.status = 404

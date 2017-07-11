@@ -14,7 +14,6 @@
     <div v-else-if="currentView ==='relatives'">
       <relativeslist></relativeslist>
     </div>
-
     <button class="btn logout" v-on:click="clearStorageData">
       <router-link v-on:click="clearStorageData" to="/">Log out</router-link>
     </button>
@@ -30,9 +29,8 @@
   import friendslist from './friends/friend-list.vue'
   import relativeslist from './relatives/relative-list.vue'
   import {store} from '../../reducers/root'
-
+  
   export default {
-    store: store,
     data() {
       return {
         currentView: null
