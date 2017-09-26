@@ -37,7 +37,7 @@ export default {
         console.log(this.storeState)
     },
     methods: {
-        click: function (e) {
+        click: function(e) {
             e.preventDefault();
 
             store.dispatch(Actions.Todos.addTodo(this.text));
@@ -51,7 +51,7 @@ export default {
             let s = today.getSeconds();
             m = this.checkTime(m);
             s = this.checkTime(s);
-            
+
             this.time = h + ":" + m + ":" + s;
             const t = setTimeout(this.startTime, 500);
         },

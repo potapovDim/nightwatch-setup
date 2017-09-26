@@ -10,7 +10,7 @@ const initialPage = {
 
 }
 module.exports = {
-    url:"http://localhost:8080", //base url to your website
+    url:"http://localhost:8082", //base url to your website
     elements: {
       app: "#app" // css selector 
     },

@@ -24,37 +24,42 @@
 </template>
 
 <script>
-  import { getData, postData, localStorageService } from '../../utils/index'
-  import joblist from './jobs/job-list.vue'
-  import friendslist from './friends/friend-list.vue'
-  import relativeslist from './relatives/relative-list.vue'
-  import {store} from '../../reducers/root'
-  
-  export default {
-    data() {
-      return {
-        currentView: null
-      }
+import { getData, postData, localStorageService } from '../../utils/index'
+import joblist from './jobs/job-list.vue'
+import friendslist from './friends/friend-list.vue'
+import relativeslist from './relatives/relative-list.vue'
+import { store } from '../../reducers/root'
+
+export default {
+  data() {
+    return {
+      currentView: null
+    }
+  },
+  components: {
+    joblist,
+    friendslist,
+    relativeslist
+  },
+  mounted() {
+  },
+  methods: {
+    clearStorageData() {
+      localStorageService.clearAll()
     },
-    components: {
-      joblist,
-      friendslist,
-      relativeslist
-    },
-    mounted() {
-    },
-    methods: {
-      clearStorageData() {
-        localStorageService.clearAll()
-      },
-      changeView(view) {
-        this.currentView !== view ? this.currentView = view : this.currentView = null
-      }
+    changeView(view) {
+      this.currentView !== view ? this.currentView = view : this.currentView = null
     }
   }
+}
 
 </script>
 
 <style lang="css">
- 
+.cabinet-controls {
+
+}
+.cabinet-controls:hover {
+
+}
 </style>

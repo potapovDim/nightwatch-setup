@@ -20,7 +20,7 @@ const loginPage = {
 }
 
 module.exports = {
-    url:"http://localhost:8080", //base url to your website
+    url:"http://localhost:8082", //base url to your website
     elements: {
       login: ".user-name",
       pass: ".user-password",

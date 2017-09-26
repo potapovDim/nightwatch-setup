@@ -60,7 +60,7 @@ const cabinetPage = {
 }
 
 module.exports = {
-    url:"http://localhost:8080/cabinet", //base url to your website
+    url:"http://localhost:8082/cabinet", //base url to your website
     elements: {
       jobsBtn: " .cabinet> button:nth-child(1)",
       jobField: ".job-list",

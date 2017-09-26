@@ -19,7 +19,7 @@ const infoPage = {
 
 }
 module.exports = {
-    url:"http://localhost:8080", //base url to your website
+    url:"http://localhost:8082", //base url to your website
     elements: {
       btnReg: ".create-user-button:first-child",
       btnLogin: ".create-user-button:last-child",

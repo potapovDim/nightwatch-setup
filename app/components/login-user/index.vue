@@ -2,22 +2,27 @@
   <div class="login">
     <h1>Login</h1>
     <div>
-      <input type="text" name="u" placeholder="Username" class="user-name"></input>
-      <input type="password" name="p" placeholder="Password" class="user-password"></input>
+      <input type="text" name="u" placeholder="Username" v-on:focus="dropState" class="user-name"></input>
+      <input type="password" name="p" placeholder="Password" v-on:focus="dropState" class="user-password"></input>
       <button v-on:click="login" type="button" class="btn btn-primary btn-block btn-large">Login</button>
+      <warning v-if="warning" v-bind:message="'invalid username or password'"></warning>
     </div>
     <div v-if="loading" class="loading-absolute">
-      <loading ></loading>
+      <loading></loading>
     </div>
   </div>
 </template>
 
 <script>
-  import { postData, imitateAsync, localStorageService } from '../../utils/'
+  import {
+    postData,
+    imitateAsync,
+    localStorageService
+  } from '../../utils/'
   import warning from '../helpers/warning.vue'
   import success from '../helpers/success.vue'
   import loading from '../helpers/loading.vue'
-
+  
   export default {
     components: {
       warning,
@@ -32,14 +37,26 @@
       }
     },
     methods: {
+      dropState() {
+        this.warning = false;
+        this.success = false;
+        this.loading = false;
+      },
       login() {
         const name = document.getElementsByClassName('user-name')[0].value
         const password = document.getElementsByClassName('user-password')[0].value
         if (name && password) {
           this.loading = true
           const url = 'http://localhost:4422/login'
-          const data = { name, password }
-          postData({ url, data, callback: this.initResponseData })
+          const data = {
+            name,
+            password
+          }
+          postData({
+            url,
+            data,
+            callback: this.initResponseData
+          })
         }
       },
       redirectToCabinet() {
@@ -56,15 +73,14 @@
         this.warning = true
       },
       initResponseData(status, data) {
-        status === 404
-          ? imitateAsync(500, null, this.failLogin)
-          : this.setUserData(data.token, data.id)
+        status === 404 ?
+          imitateAsync(500, null, this.failLogin) :
+          this.setUserData(data.token, data.id)
       }
     }
   }
-
 </script>
 
 <style>
- 
+  
 </style>
