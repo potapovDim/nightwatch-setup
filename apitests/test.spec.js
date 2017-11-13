@@ -1,14 +1,15 @@
-const {expect} = require('chai')
-const {asyncPostData, asyncGetData} = require('./utils')
+const { expect } = require('chai')
+const { asyncPostData, asyncGetData } = require('./utils')
+const RxUtil = require('./rx-util')
 
 describe('Register user and login test ', () => {
   let password
   let token
   let id
   const name = 'testName'
-  it('register user', () => {
+  it('register user', async () => {
     const postData = JSON.stringify({
-        name
+      name
     })
     const options = {
       hostname: 'localhost',
@@ -19,15 +20,14 @@ describe('Register user and login test ', () => {
         'Content-Type': 'application/json'
       }
     }
-    return asyncPostData(postData, options).then(data => {
-      expect(data.message).to.eql('user.success.created')
-      expect(data.yourPassword).to.exist
-      password = data.yourPassword
-    })
+    const data = await asyncPostData(postData, options)
+    expect(data.message).to.eql('user.success.created')
+    expect(data.yourPassword).to.exist
+    password = data.yourPassword
   })
-  it('login user', () => {
+  it('login user', async () => {
     const postData = JSON.stringify({
-        name, password
+      name, password
     })
     const options = {
       hostname: 'localhost',
@@ -38,13 +38,12 @@ describe('Register user and login test ', () => {
         'Content-Type': 'application/json'
       }
     }
-    return asyncPostData(postData, options).then(data => {
-      expect(data.id).to.exist
-      expect(data.token).to.exist
-      expect(data.username).to.eql(name)
-      expect(data.message).to.eql('ok')
-      id = data.id
-      token = data.token
-    })
+    const data = await asyncPostData(postData, options)
+    expect(data.id).to.exist
+    expect(data.token).to.exist
+    expect(data.username).to.eql(name)
+    expect(data.message).to.eql('ok')
+    id = data.id
+    token = data.token
   })
 })
