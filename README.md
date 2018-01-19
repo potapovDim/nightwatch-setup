@@ -5,10 +5,10 @@ and setup automation UI testing with  Nightwatch(PO model)
 
 **Stack :**
 * [vuejs](https://vuejs.org/)
-* [vuejs router] (https://router.vuejs.org/)
+* [vuejs router](https://router.vuejs.org/)
 * [webdriver-manager](https://www.npmjs.com/package/webdriver-manager)
 * [nightwatch](http://nightwatchjs.org/)
-* [koa2] (http://koajs.com/)
+* [koa2](http://koajs.com/)
 
 
 ## Install
