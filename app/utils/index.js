@@ -1,29 +1,38 @@
+const JSONparse = (arg) => {
+  try {
+    return JSON.parse(arg)
+  } catch (error) {
+    return arg
+  }
+}
+
+
 const setHeaders = (xhr, customHeaders) => {
   Object.keys(customHeaders).forEach(key => {
     xhr.setRequestHeader(key, customHeaders[key])
   })
 }
 
-const postData = ({url, data, callback, headers}) => {
+const postData = ({ url, data, callback, headers }) => {
   const xhr = new XMLHttpRequest()
   xhr.open("POST", url, true)
   xhr.setRequestHeader('Content-type', 'application/json')
   headers && setHeaders(xhr, headers)
   xhr.onreadystatechange = () => {
-    xhr.readyState === 4 && callback && callback(xhr.status, JSON.parse(xhr.response))
+    xhr.readyState === 4 && callback && callback(xhr.status, JSONparse(xhr.response))
   }
   xhr.send(JSON.stringify(data))
 }
 
 
-const getData = ({url, headers, callback}) => {
+const getData = ({ url, headers, callback }) => {
   const xhr = new XMLHttpRequest()
   xhr.open("GET", url, true)
   xhr.setRequestHeader('Content-type', 'application/json')
   headers && setHeaders(xhr, headers)
 
   xhr.onreadystatechange = () => {
-    xhr.readyState === 4 && callback && callback(xhr.status, JSON.parse(xhr.response))
+    xhr.readyState === 4 && callback && callback(xhr.status, JSONparse(xhr.response))
   }
   xhr.send()
 }

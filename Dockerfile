@@ -1,4 +1,4 @@
-docker run --restart=always -p 127.0.0.1:27050:27017 --hostname mongo-test --name mongo-test -d -v /home:/data/db -v /var/log:/var/log mongo --setParameter failIndexKeyTooLong=false
+docker run --restart=always -p 127.0.0.1:27050:27017 --hostname mongo-test --name mongo-test -d mongo --setParameter failIndexKeyTooLong=false
 docker run --restart=always -p 127.0.0.1:6370:6379   --hostname redis --name redis -d redis
 
 
